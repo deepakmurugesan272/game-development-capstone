@@ -1,0 +1,22 @@
+{
+  "short_name": "TamilHeritage",
+  "name": "Tamil Heritage Games Hub",
+  "description": "Preserve and play classical Tamil traditional board games like Pallanguzhi, Aadu Puli Aattam, Paramapadham, and Dayakattai.",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 width=%22192%22 height=%22192%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23e55934%22/><text x=%2250%25%22 y=%2260%25%22 font-size=%22110%22 text-anchor=%22middle%22 fill=%22white%22>🕉️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22 width=%22512%22 height=%22512%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23e55934%22/><text x=%2250%25%22 y=%2260%25%22 font-size=%22300%22 text-anchor=%22middle%22 fill=%22white%22>🕉️</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#190c05",
+  "theme_color": "#e55934",
+  "display": "standalone",
+  "orientation": "portrait-primary"
+}
