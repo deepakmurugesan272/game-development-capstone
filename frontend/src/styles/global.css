@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* HSL Colors */
+  --clay-hue: 14;
+  --gold-hue: 43;
+  --green-hue: 135;
+  --bg-hue: 38;
+
+  /* Light Theme Variables */
+  --primary: hsl(var(--clay-hue), 70%, 48%);
+  --primary-hover: hsl(var(--clay-hue), 75%, 40%);
+  --secondary: hsl(var(--gold-hue), 90%, 48%);
+  --secondary-hover: hsl(var(--gold-hue), 95%, 40%);
+  --success: hsl(var(--green-hue), 55%, 35%);
+  --danger: hsl(0, 75%, 50%);
+  
+  --bg-app: hsl(var(--bg-hue), 35%, 96%);
+  --bg-card: hsl(0, 0%, 100%);
+  --bg-input: hsl(var(--bg-hue), 20%, 93%);
+  --text-main: hsl(var(--clay-hue), 30%, 12%);
+  --text-muted: hsl(var(--clay-hue), 15%, 40%);
+  --border-color: hsl(var(--clay-hue), 20%, 85%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(60, 20, 5, 0.08);
+  --shadow-lg: 0 16px 48px rgba(60, 20, 5, 0.15);
+  
+  --wood-grain: radial-gradient(circle, rgba(230,205,170,0.1) 0%, rgba(200,165,120,0.15) 100%);
+  --brass-grain: linear-gradient(135deg, #e5c060 0%, #b28a2a 100%);
+  --border-radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Variables */
+  --primary: hsl(var(--clay-hue), 75%, 52%);
+  --primary-hover: hsl(var(--clay-hue), 80%, 46%);
+  --secondary: hsl(var(--gold-hue), 90%, 55%);
+  --secondary-hover: hsl(var(--gold-hue), 95%, 45%);
+  --success: hsl(var(--green-hue), 60%, 45%);
+  --danger: hsl(0, 85%, 60%);
+  
+  --bg-app: hsl(var(--clay-hue), 25%, 8%);
+  --bg-card: hsl(var(--clay-hue), 20%, 13%);
+  --bg-input: hsl(var(--clay-hue), 15%, 18%);
+  --text-main: hsl(var(--bg-hue), 40%, 95%);
+  --text-muted: hsl(var(--bg-hue), 15%, 65%);
+  --border-color: hsl(var(--clay-hue), 15%, 22%);
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  
+  --wood-grain: radial-gradient(circle, rgba(60,35,15,0.2) 0%, rgba(30,15,5,0.4) 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', 'Noto Sans Tamil', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-app);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rollDice {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(180deg) scale(1.2); }
+  50% { transform: rotate(360deg) scale(0.9); }
+  75% { transform: rotate(540deg) scale(1.1); }
+  100% { transform: rotate(720deg) scale(1); }
+}
+
+.animate-fade {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 30s linear infinite;
+}
+
+/* Traditional Textures & Motifs */
+.wood-board {
+  background: var(--wood-grain), #8b4a1d;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.5), var(--shadow-lg);
+  border: 8px solid #5a2e0f;
+  border-radius: var(--border-radius);
+}
+
+[data-theme="dark"] .wood-board {
+  background: var(--wood-grain), #4a2307;
+  border-color: #2b1303;
+}
+
+.brass-accent {
+  background: var(--brass-grain);
+  color: #3b2005;
+  box-shadow: 0 0 10px rgba(229, 192, 96, 0.4);
+}
+
+/* Utility Layouts */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .glass {
+  background: rgba(25, 12, 5, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Paramapadham Board Tweaks & Upgrades */
+.paramapadham-cell {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.paramapadham-cell:hover {
+  transform: scale(1.08);
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(60, 20, 5, 0.18);
+  border-color: var(--primary) !important;
+  outline: 2px solid var(--primary);
+  outline-offset: -2px;
+}
+
+.rolling-dice {
+  animation: rollDice 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+

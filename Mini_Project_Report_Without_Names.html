@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TAMIL HERITAGE GAMES HUB - Mini Project Report</title>
+<style>
+  body {
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 40px 0;
+    font-family: "Times New Roman", Times, serif;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .page {
+    background: #ffffff;
+    width: 210mm;
+    height: 297mm;
+    padding: 25mm 20mm 25mm 25mm; /* left margin is larger for binding */
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  p, li, td, th {
+    font-size: 12pt;
+    line-height: 1.6;
+    text-align: justify;
+  }
+  h1 {
+    font-size: 16pt;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 14pt;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 12pt;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .bold {
+    font-weight: bold;
+  }
+  .center {
+    text-align: center;
+  }
+  .italic {
+    font-style: italic;
+  }
+  .cover-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  table, th, td {
+    border: 1px solid #000;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .diagram-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .diagram-caption {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .page-number {
+    position: absolute;
+    bottom: 15mm;
+    right: 20mm;
+    font-size: 10pt;
+  }
+  .sig-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+  }
+  .sig-box {
+    width: 45%;
+  }
+  .sig-line {
+    border-top: 1px solid #000;
+    margin-top: 50px;
+    padding-top: 5px;
+    font-weight: bold;
+  }
+  @media print {
+    body {
+      background-color: #ffffff;
+      padding: 0;
+      margin: 0;
+    }
+    .page {
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      page-break-after: always;
+      overflow: visible;
+    }
+    .page:last-child {
+      page-break-after: avoid;
+    }
+    @page {
+      size: A4;
+      margin: 25mm 20mm 25mm 25mm;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER PAGE -->
+<div class="page">
+  <div class="cover-container">
+    <div>
+      <h1 style="font-size: 18pt; margin-top: 30px; letter-spacing: 1px;">TAMIL HERITAGE GAMES HUB</h1>
+      <h3 style="margin-top: 20px; font-weight: normal; font-size: 13pt;"><i>A Mini Project Report</i></h3>
+    </div>
+    
+    <div style="margin-top: 40px; font-size: 12pt; line-height: 1.8;">
+      Submitted in partial fulfilment of the requirements for the award of the degree of
+      <div class="bold" style="font-size: 14pt; margin: 15px 0;">BACHELOR OF ENGINEERING</div>
+      in
+      <div class="bold" style="font-size: 14pt; margin: 15px 0;">COMPUTER SCIENCE AND ENGINEERING</div>
+    </div>
+    
+    <div style="margin-top: 40px;">
+      <div class="italic">Submitted by</div>
+      <div class="bold" style="font-size: 13pt; margin-top: 10px; line-height: 2.2;">
+        ____________________ (Reg. No: _____________) <br>
+        ____________________ (Reg. No: _____________) <br>
+        ____________________ (Reg. No: _____________)
+      </div>
+    </div>
+    
+    <div style="margin-top: 45px;">
+      <div class="italic">Under the guidance of</div>
+      <div class="bold" style="font-size: 13pt; margin-top: 5px;">Mr./Ms. ____________________, M.E.,</div>
+      <div style="font-size: 11pt;">Assistant Professor, Department of CSE</div>
+    </div>
+    
+    <div style="margin-bottom: 20px; line-height: 1.6;">
+      <div class="bold" style="font-size: 13pt; letter-spacing: 0.5px;">DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</div>
+      <div class="bold" style="font-size: 14pt; margin-top: 5px; color: #1e3a8a;">V.S.B. ENGINEERING COLLEGE, KARUR</div>
+      <div style="font-size: 10pt;">(An Autonomous Institution)</div>
+      <div style="font-size: 11pt;">Karur &ndash; 639 111, Tamil Nadu</div>
+      <div class="bold" style="font-size: 13pt; margin-top: 20px; letter-spacing: 1px;">MAY 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: BONAFIDE CERTIFICATE -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">BONAFIDE CERTIFICATE</h2>
+  
+  <p style="margin-top: 50px; text-indent: 1.5cm; line-height: 2;">
+    This is to certify that the mini project report titled <span class="bold">"TAMIL HERITAGE GAMES HUB"</span> is the bonafide work of <span class="bold">____________________, ____________________ and ____________________</span>, who carried out the project work under my supervision during the academic year 2025 &ndash; 2026, in partial fulfilment of the requirements for the award of the degree of Bachelor of Engineering in Computer Science and Engineering, V.S.B. Engineering College, Karur.
+  </p>
+  
+  <div class="sig-container" style="margin-top: 100px;">
+    <div class="sig-box">
+      <div class="sig-line">PROJECT GUIDE</div>
+      <p style="font-size: 11pt; line-height: 1.4; margin-top: 5px;">
+        Assistant Professor<br>
+        Department of CSE
+      </p>
+    </div>
+    <div class="sig-box" style="text-align: right;">
+      <div class="sig-line" style="text-align: right;">HEAD OF THE DEPARTMENT</div>
+      <p style="font-size: 11pt; line-height: 1.4; margin-top: 5px; text-align: right;">
+        Department of CSE
+      </p>
+    </div>
+  </div>
+  
+  <p style="margin-top: 100px;">
+    Submitted for the Project Viva-Voce Examination held on <span class="bold">__________________</span>.
+  </p>
+  
+  <div class="sig-container" style="margin-top: 50px;">
+    <div class="sig-box">
+      <div class="bold">Internal Examiner</div>
+    </div>
+    <div class="sig-box" style="text-align: right;">
+      <div class="bold" style="text-align: right;">External Examiner</div>
+    </div>
+  </div>
+  
+  <div class="page-number">2</div>
+</div>
+
+<!-- PAGE 3: ACKNOWLEDGEMENT -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">ACKNOWLEDGEMENT</h2>
+  
+  <p style="margin-top: 40px; text-indent: 1.5cm; line-height: 1.8;">
+    We express our sincere gratitude to our Chairman, Secretary and Correspondent of V.S.B. Engineering College, Karur, for providing us with the necessary facilities and a congenial atmosphere to carry out this project successfully.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    We are deeply thankful to our Principal for his constant encouragement and support extended throughout the course of this project.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    We express our heartfelt thanks to the Head of the Department, Department of Computer Science and Engineering, for valuable guidance and for providing the necessary facilities to complete this project.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    We would like to place on record our profound gratitude to our project guide for patient guidance, constant supervision and constructive suggestions, which helped us to complete this project within the stipulated time.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    We also thank all the teaching and non-teaching staff of the Department of Computer Science and Engineering for their help and support. Finally, we thank our parents and friends for their encouragement and moral support throughout this project work.
+  </p>
+  
+  <div class="page-number">3</div>
+</div>
+
+<!-- PAGE 4: ABSTRACT -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">ABSTRACT</h2>
+  
+  <p style="margin-top: 40px; text-indent: 1.5cm; line-height: 1.8;">
+    The <span class="bold">"Tamil Heritage Games Hub"</span> is a modern web-based platform designed to preserve, promote, and enable the digital play of classical traditional board games of Tamil Nadu. In an era dominated by foreign and high-action digital entertainment, culturally significant games such as Aadu Puli Aattam (Goats and Tigers), Dayakattai (Dice Game), Pallanguzhi (Seed Capture), and Paramapadham (Snakes and Ladders) are rapidly facing extinction. This project presents a full-stack, responsive solution that replicates these ancient board configurations with robust logic engines, user profile retention, localization, and audio-visual cues.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    The proposed system features structured components including an authentication controller utilizing JSON Web Tokens (JWT) for session management, a dashboard tracking detailed game history, XP points, leveling up, coins, and custom achievements. An elegant, themeable front-end is implemented using React, TypeScript, Vite, and custom CSS styling that mimics traditional brass and wood grain aesthetics. Sound synthesis is integrated using the Web Audio API to produce traditional ambient feedback without large file assets. The system is engineered to connect to a MongoDB cloud database with an automated in-memory backup server logic that seamlessly executes in local, offline environments.
+  </p>
+  
+  <p style="margin-top: 20px; text-indent: 1.5cm; line-height: 1.8;">
+    Validation results demonstrate successful state replication in multiplayer and single-player AI configurations, fast web performance (with partial search operations rendering in under 1 second), and high usability metrics in both English and Tamil languages. The system provides an engaging, educational digital resource that safeguards Tamil traditional intellectual heritage.
+  </p>
+  
+  <p style="margin-top: 40px;">
+    <span class="bold">Keywords:</span> Tamil Traditional Games, Full-stack Web Application, React, Node.js, MongoDB, Board Games, Aadu Puli Aattam, Dayakattai, Pallanguzhi, Paramapadham.
+  </p>
+  
+  <div class="page-number">4</div>
+</div>
+
+<!-- PAGE 5: TABLE OF CONTENTS -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">TABLE OF CONTENTS</h2>
+  
+  <table style="border: none; margin-top: 40px; width: 100%;">
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold; width: 85%;">ACKNOWLEDGEMENT</td>
+      <td style="border: none; font-weight: bold; text-align: right; width: 15%;">iii</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">ABSTRACT</td>
+      <td style="border: none; font-weight: bold; text-align: right;">iv</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">LIST OF TABLES</td>
+      <td style="border: none; font-weight: bold; text-align: right;">vi</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">LIST OF FIGURES</td>
+      <td style="border: none; font-weight: bold; text-align: right;">vii</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">LIST OF ABBREVIATIONS</td>
+      <td style="border: none; font-weight: bold; text-align: right;">viii</td>
+    </tr>
+    <tr style="border: none; height: 15px;"><td colspan="2" style="border: none;"></td></tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">1. INTRODUCTION</td>
+      <td style="border: none; font-weight: bold; text-align: right;">1</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">1.1 Overview of the Project</td>
+      <td style="border: none; text-align: right;">1</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">1.2 Literature Survey</td>
+      <td style="border: none; text-align: right;">2</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">1.3 Proposed System</td>
+      <td style="border: none; text-align: right;">3</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">1.4 Objectives & Scope</td>
+      <td style="border: none; text-align: right;">4</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">1.5 Organization of the Report</td>
+      <td style="border: none; text-align: right;">4</td>
+    </tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">2. REQUIREMENTS SPECIFICATION</td>
+      <td style="border: none; font-weight: bold; text-align: right;">5</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">2.1 Overall Description</td>
+      <td style="border: none; text-align: right;">5</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">2.2 Specific Requirements</td>
+      <td style="border: none; text-align: right;">7</td>
+    </tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">3. SYSTEM DESIGN AND TEST PLAN</td>
+      <td style="border: none; font-weight: bold; text-align: right;">10</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">3.1 Decomposition Description</td>
+      <td style="border: none; text-align: right;">10</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">3.2 Dependency Description</td>
+      <td style="border: none; text-align: right;">11</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">3.3 Detailed Design</td>
+      <td style="border: none; text-align: right;">12</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">3.4 Proposed Sampling Methods</td>
+      <td style="border: none; text-align: right;">14</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">3.5 Test Plan</td>
+      <td style="border: none; text-align: right;">14</td>
+    </tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">4. IMPLEMENTATION AND RESULTS</td>
+      <td style="border: none; font-weight: bold; text-align: right;">16</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">4.1 Implementation</td>
+      <td style="border: none; text-align: right;">16</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">4.2 Results</td>
+      <td style="border: none; text-align: right;">18</td>
+    </tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">5. CONCLUSION AND FUTURE WORK</td>
+      <td style="border: none; font-weight: bold; text-align: right;">20</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">5.1 Summary</td>
+      <td style="border: none; text-align: right;">20</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; padding-left: 20px;">5.2 Future Work</td>
+      <td style="border: none; text-align: right;">20</td>
+    </tr>
+    
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">REFERENCES</td>
+      <td style="border: none; font-weight: bold; text-align: right;">21</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none; font-weight: bold;">APPENDICES</td>
+      <td style="border: none; font-weight: bold; text-align: right;">22</td>
+    </tr>
+  </table>
+  
+  <div class="page-number">5</div>
+</div>
+
+<!-- PAGE 6: LIST OF TABLES & LIST OF FIGURES -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">LIST OF TABLES</h2>
+  
+  <table style="border: none; margin-top: 20px;">
+    <tr style="border: none;">
+      <td style="border: none; width: 85%;">Table 2.1 Hardware Requirements</td>
+      <td style="border: none; text-align: right; width: 15%;">8</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Table 2.2 Software Requirements</td>
+      <td style="border: none; text-align: right;">8</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Table 3.1 User Schema Definition</td>
+      <td style="border: none; text-align: right;">13</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Table 3.2 GameRecord Schema Definition</td>
+      <td style="border: none; text-align: right;">13</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Table 3.3 Heuristic weights for AI implementation</td>
+      <td style="border: none; text-align: right;">14</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Table 3.4 Test Cases and Results</td>
+      <td style="border: none; text-align: right;">15</td>
+    </tr>
+  </table>
+
+  <h2 class="center" style="margin-top: 50px; text-decoration: underline;">LIST OF FIGURES</h2>
+  
+  <table style="border: none; margin-top: 20px;">
+    <tr style="border: none;">
+      <td style="border: none; width: 85%;">Figure 2.1 Use Case Diagram</td>
+      <td style="border: none; text-align: right; width: 15%;">9</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 3.1 System Architecture Diagram</td>
+      <td style="border: none; text-align: right;">11</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 3.2 Data Flow Diagram &ndash; Level 0</td>
+      <td style="border: none; text-align: right;">12</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 3.3 Data Flow Diagram &ndash; Level 1</td>
+      <td style="border: none; text-align: right;">12</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 3.4 Entity Relationship Diagram</td>
+      <td style="border: none; text-align: right;">13</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 4.1 Hub Landing Screen</td>
+      <td style="border: none; text-align: right;">17</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 4.2 Interactive Pallanguzhi Board Visual</td>
+      <td style="border: none; text-align: right;">17</td>
+    </tr>
+    <tr style="border: none;">
+      <td style="border: none;">Figure 4.3 Interactive Aadu Puli Aattam Board Visual</td>
+      <td style="border: none; text-align: right;">18</td>
+    </tr>
+  </table>
+
+  <div class="page-number">6</div>
+</div>
+
+<!-- PAGE 7: LIST OF ABBREVIATIONS -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">LIST OF ABBREVIATIONS</h2>
+  
+  <table style="margin-top: 40px;">
+    <tr>
+      <th style="width: 25%;">Abbreviation</th>
+      <th>Expansion</th>
+    </tr>
+    <tr>
+      <td class="bold">THGH</td>
+      <td>Tamil Heritage Games Hub</td>
+    </tr>
+    <tr>
+      <td class="bold">SPA</td>
+      <td>Single Page Application</td>
+    </tr>
+    <tr>
+      <td class="bold">DFD</td>
+      <td>Data Flow Diagram</td>
+    </tr>
+    <tr>
+      <td class="bold">ERD</td>
+      <td>Entity Relationship Diagram</td>
+    </tr>
+    <tr>
+      <td class="bold">UML</td>
+      <td>Unified Modeling Language</td>
+    </tr>
+    <tr>
+      <td class="bold">JWT</td>
+      <td>JSON Web Token</td>
+    </tr>
+    <tr>
+      <td class="bold">REST</td>
+      <td>Representational State Transfer</td>
+    </tr>
+    <tr>
+      <td class="bold">API</td>
+      <td>Application Programming Interface</td>
+    </tr>
+    <tr>
+      <td class="bold">HTML</td>
+      <td>HyperText Markup Language</td>
+    </tr>
+    <tr>
+      <td class="bold">CSS</td>
+      <td>Cascading Style Sheets</td>
+    </tr>
+    <tr>
+      <td class="bold">GUI</td>
+      <td>Graphical User Interface</td>
+    </tr>
+    <tr>
+      <td class="bold">IDE</td>
+      <td>Integrated Development Environment</td>
+    </tr>
+    <tr>
+      <td class="bold">XP</td>
+      <td>Experience Points</td>
+    </tr>
+  </table>
+  
+  <div class="page-number">7</div>
+</div>
+
+<!-- PAGE 8: CHAPTER 1 - INTRODUCTION -->
+<div class="page">
+  <h2 style="margin-top: 40px;">CHAPTER 1<br>INTRODUCTION</h2>
+  
+  <h3>1.1 Overview of the Project</h3>
+  <p>
+    Traditional board games form a significant pillar of cultural heritage, intellectual development, and historical storytelling. In Tamil Nadu, board games such as <span class="italic">Aadu Puli Aattam</span> (Goats and Tigers), <span class="italic">Dayakattai</span> (Dice game), <span class="italic">Pallanguzhi</span> (Mancala variants), and <span class="italic">Paramapadham</span> (traditional Snakes and Ladders) have been played for generations. These games are not merely recreational; they represent ancient mathematical models, strategic planning systems, and socio-ethical values. For example, Aadu Puli Aattam models asymmetrical conflict and defensive barricades, while Pallanguzhi teaches rapid division, resource management, and conservation of counts.
+  </p>
+  <p>
+    However, with the rapid digitization of gaming and the influx of generic video games, these traditional games are experiencing a drastic decline in physical play. The materials, rules, and nuances are quickly fading from the memory of modern generations. 
+  </p>
+  <p>
+    The <span class="bold">Tamil Heritage Games Hub (THGH)</span> proposed and implemented in this project addresses this critical gap by digitizing these games. It introduces a web-based, highly polished platform that allows players to engage with these games interactively on desktops and mobile devices. By providing smart AI logic, user statistics tracking, localized language translations (English/Tamil), and nostalgic canvas designs, THGH transforms cultural assets into scalable, interactive digital media.
+  </p>
+  
+  <h3>1.2 Literature Survey</h3>
+  <p>
+    A study of existing systems highlights that digital preservation of folk board games is often restricted to dry academic databases or simple, basic mobile app clones plagued with ads and incorrect rule variants. While platforms like Koha provide structured cataloguing for libraries, there is a lack of general unified frameworks for traditional game assets. Commercial gaming hubs exist (e.g., chess.com), but they cater exclusively to Western/Global games.
+  </p>
+  <p>
+    Research papers on educational gamification highlight that regional players exhibit stronger cognitive engagement when interacting with systems localized in their mother tongue. Furthermore, implementing modern heuristic search methods (like the Minimax algorithm with alpha-beta pruning) provides challenging gameplay even without heavy 3D rendering engines. 
+  </p>
+  <p>
+    Thus, our survey reveals a necessity for a full-stack, localized, low-latency, and accessible portal dedicated to traditional games. A responsive SPA utilizing modern frameworks (React/Vite) coupled with a decoupled REST API backend meets these criteria effectively.
+  </p>
+  
+  <div class="page-number">8</div>
+</div>
+
+<!-- PAGE 9: CHAPTER 1 - INTRODUCTION (CONTINUED) -->
+<div class="page">
+  <h3>1.3 Proposed System</h3>
+  <p>
+    The proposed Tamil Heritage Games Hub splits operations into three distinct modules:
+  </p>
+  <ul>
+    <li>
+      <span class="bold">Authentication & Account Management:</span> Restricts score registration and title acquisition to validated accounts. Implemented using JWT tokens with secure bcryptjs encryption.
+    </li>
+    <li>
+      <span class="bold">Interactive Gameplay Modules:</span> Renders custom SVG boards for Aadu Puli Aattam, Dayakattai, Pallanguzhi, and Paramapadham. Operates using client-side state machines to enforce rules, handle turns, compute AI decisions, and synthesize board sounds.
+    </li>
+    <li>
+      <span class="bold">Statistics & Leaderboard Portal:</span> Fetches player logs, calculates levels, rewards coins, unlocks cultural titles, and displays rank rankings globally.
+    </li>
+  </ul>
+  <p>
+    The system is built on a resilient dual-mode architecture: it runs in online mode communicating with a MongoDB database, or silently falls back to an in-memory mock engine if the database server is offline.
+  </p>
+  
+  <h3>1.4 Objectives & Scope</h3>
+  <p>
+    The primary objectives of this project are:
+  </p>
+  <ul>
+    <li>To design and build fully compliant, rule-enforced digital engines for four classical Tamil board games.</li>
+    <li>To develop a responsive user interface with rich visual styling resembling traditional wood and brass boards.</li>
+    <li>To implement multilingual support (Tamil and English) to maximize local accessibility and preserve terms.</li>
+    <li>To incorporate sound feedback dynamically synthesized via code, bypassing heavy assets.</li>
+    <li>To maintain a global ranking leaderboard and achievement rewards database.</li>
+  </ul>
+  <p>
+    The scope is currently bounded to local pass-and-play and single-player AI configurations. Network-based real-time multiplayer lobbies are defined as future extensions.
+  </p>
+  
+  <h3>1.5 Organization of the Report</h3>
+  <p>
+    The remainder of this report is organized as follows: Chapter 2 outlines the requirements specification, including hardware, software, and diagrams. Chapter 3 discusses system architecture, database design, game logic patterns, and test plans. Chapter 4 describes implementation details, code fragments, and validation results. Chapter 5 concludes with a summary and directions for future research.
+  </p>
+  
+  <div class="page-number">9</div>
+</div>
+
+<!-- PAGE 10: CHAPTER 2 - REQUIREMENTS SPECIFICATION -->
+<div class="page">
+  <h2 style="margin-top: 40px;">CHAPTER 2<br>REQUIREMENTS SPECIFICATION</h2>
+  
+  <h3>2.1 Overall Description</h3>
+  
+  <h4>2.1.1 Product Perspective</h4>
+  <p>
+    The Tamil Heritage Games Hub is a standalone, full-stack web application. It acts as an educational and entertainment platform. It does not require any dedicated installation from the client side except a web browser. The system connects to a Node.js API server which manages credentials and game outcomes using MongoDB schemas.
+  </p>
+  
+  <h4>2.1.2 Product Functions</h4>
+  <ul>
+    <li>Secure registration and login with input sanitation and password hashing.</li>
+    <li>Interactive play of four traditional games (Aadu Puli Aattam, Dayakattai, Pallanguzhi, Paramapadham).</li>
+    <li>Adaptive AI engine which processes moves based on board state trees.</li>
+    <li>Profile progress tracking including XP points, coins, player levels, and custom titles.</li>
+    <li>Leaderboards sorted by specific games or total global XP points.</li>
+    <li>Dynamic theme switching (light/dark mode) and language toggle (English/Tamil).</li>
+  </ul>
+
+  <h4>2.1.3 User Characteristics</h4>
+  <p>
+    The application caters to general gamers, children, and elderly individuals interested in traditional board games. Usability is prioritized; menus are large and intuitive, and the Tamil translation allows non-English literate players to navigate and play with minimal training.
+  </p>
+
+  <h4>2.1.4 Operating Environment</h4>
+  <p>
+    The client-side interface executes on any browser (Chrome, Firefox, Safari, Edge) on Android, iOS, Windows, or macOS. The server runtime environment is Node.js v18+ with database operations managed by MongoDB v6+.
+  </p>
+
+  <h4>2.1.5 Constraints</h4>
+  <ul>
+    <li>Session persistence relies on valid JWT storage in localStorage; clearing cache clears the login state.</li>
+    <li>Fallback storage mode (in-memory) does not survive backend server restarts.</li>
+  </ul>
+  
+  <div class="page-number">10</div>
+</div>
+
+<!-- PAGE 11: CHAPTER 2 - REQUIREMENTS SPECIFICATION (CONTINUED) -->
+<div class="page">
+  <h3>2.2 Specific Requirements</h3>
+  
+  <h4>2.2.1 External Interface Requirements</h4>
+  <p>
+    The front-end integrates with the backend API using REST guidelines. Endpoints are secured under standard headers. Dynamic sound signals are dispatched through the browser's Web Audio API context.
+  </p>
+  
+  <h4>2.2.2 System Features</h4>
+  <ul>
+    <li><span class="bold">User Authentication:</span> Enables profile creation, secure session creation, and claims registration.</li>
+    <li><span class="bold">Traditional Game Engine:</span> Enforces exact rules, move validities, win conditions, and board resets.</li>
+    <li><span class="bold">Leaderboard Aggregator:</span> Ranks users in descending order based on cumulative victories.</li>
+  </ul>
+  
+  <h4>2.2.3 Data Flow Diagrams and UML Diagrams</h4>
+  <p>
+    The system workflow is modeled below to illustrate user-system actions and database data flows.
+  </p>
+
+  <div class="diagram-container">
+    <svg width="450" height="230" viewBox="0 0 450 230" style="background:#fafafa; border:1px solid #ddd; border-radius:8px;">
+      <rect x="110" y="10" width="230" height="210" fill="none" stroke="#444" stroke-width="1.5"/>
+      <text x="225" y="25" text-anchor="middle" font-weight="bold" font-size="10px">TAMIL HERITAGE GAMES HUB</text>
+      <circle cx="50" cy="90" r="15" fill="#e5e7eb" stroke="#333" stroke-width="1.5"/>
+      <line x1="50" y1="105" x2="50" y2="140" stroke="#333" stroke-width="1.5"/>
+      <line x1="30" y1="120" x2="70" y2="120" stroke="#333" stroke-width="1.5"/>
+      <line x1="50" y1="140" x2="35" y2="170" stroke="#333" stroke-width="1.5"/>
+      <line x1="50" y1="140" x2="65" y2="170" stroke="#333" stroke-width="1.5"/>
+      <text x="50" y="185" text-anchor="middle" font-weight="bold" font-size="11px">Player</text>
+      <g>
+        <ellipse cx="225" cy="55" rx="70" ry="15" fill="#fff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="225" y="58" text-anchor="middle" font-size="9px">Register / Login</text>
+        <line x1="75" y1="100" x2="160" y2="65" stroke="#666" stroke-dasharray="3,3"/>
+      </g>
+      <g>
+        <ellipse cx="225" cy="100" rx="70" ry="15" fill="#fff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="225" y="103" text-anchor="middle" font-size="9px">Select & Play Games</text>
+        <line x1="75" y1="115" x2="155" y2="105" stroke="#666" stroke-width="1"/>
+      </g>
+      <g>
+        <ellipse cx="225" cy="145" rx="70" ry="15" fill="#fff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="225" y="148" text-anchor="middle" font-size="9px">View Leaderboard</text>
+        <line x1="75" y1="130" x2="160" y2="140" stroke="#666" stroke-width="1"/>
+      </g>
+      <g>
+        <ellipse cx="225" cy="190" rx="70" ry="15" fill="#fff" stroke="#3b82f6" stroke-width="1.5"/>
+        <text x="225" y="193" text-anchor="middle" font-size="9px">Manage Profile & Titles</text>
+        <line x1="75" y1="140" x2="165" y2="182" stroke="#666" stroke-dasharray="3,3"/>
+      </g>
+    </svg>
+    <div class="diagram-caption">Figure 2.1 Use Case Diagram for Player Actions</div>
+  </div>
+
+  <div class="page-number">11</div>
+</div>
+
+<!-- PAGE 12: CHAPTER 2 - REQUIREMENTS SPECIFICATION (CONTINUED) -->
+<div class="page">
+  <h4>2.2.4 Performance Requirements</h4>
+  <ul>
+    <li>The average query response time for the leaderboard should be less than 200 milliseconds under a concurrent load of 100 users.</li>
+    <li>Vite bundler must compile the client code into dynamic chunks where the main index chunk remains below 250KB for fast networks.</li>
+    <li>AI move execution based on minimax heuristics should compute in under 300ms, ensuring zero player lag.</li>
+  </ul>
+
+  <h4>2.2.5 Software Quality Attributes</h4>
+  <ul>
+    <li><span class="bold">Usability:</span> Simple navigation containing bilingual language support (English / Tamil) and high-contrast accessibility themes.</li>
+    <li><span class="bold">Maintainability:</span> Adherence to TypeScript type safety standards and modular class organization (decoupling board rendering from game state calculations).</li>
+    <li><span class="bold">Reliability:</span> Connection-resilient fallback prevents backend crashes if MongoDB fails.</li>
+  </ul>
+
+  <div class="diagram-container" style="margin-top: 30px;">
+    <svg width="450" height="120" viewBox="0 0 450 120" style="background:#fafafa; border:1px solid #ddd; border-radius:8px;">
+      <rect x="20" y="35" width="80" height="50" fill="#fff" stroke="#333" stroke-width="1.5" rx="5"/>
+      <text x="60" y="65" text-anchor="middle" font-weight="bold" font-size="11px">Player</text>
+      <circle cx="225" cy="60" r="40" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+      <text x="225" y="58" text-anchor="middle" font-weight="bold" font-size="10px">THGH System</text>
+      <text x="225" y="70" text-anchor="middle" font-size="9px">Process 1.0</text>
+      <path d="M350,45 C350,35 430,35 430,45 L430,75 C430,85 350,85 350,75 Z" fill="#fff" stroke="#333" stroke-width="1.5"/>
+      <line x1="350" y1="55" x2="430" y2="55" stroke="#333"/>
+      <line x1="350" y1="65" x2="430" y2="65" stroke="#333"/>
+      <text x="390" y="50" text-anchor="middle" font-weight="bold" font-size="9px">MongoDB</text>
+      <path d="M100,50 L185,50" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="142" y="45" text-anchor="middle" font-size="8px">Actions/Auth</text>
+      <path d="M185,70 L100,70" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="142" y="82" text-anchor="middle" font-size="8px">Game State/XP</text>
+      <path d="M265,50 L350,50" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="307" y="45" text-anchor="middle" font-size="8px">Read/Write</text>
+      <path d="M350,70 L265,70" stroke="#000" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="307" y="82" text-anchor="middle" font-size="8px">Data Logs</text>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#000"/>
+        </marker>
+      </defs>
+    </svg>
+    <div class="diagram-caption">Figure 3.2 Data Flow Diagram (DFD) &ndash; Level 0 (Context Level)</div>
+  </div>
+
+  <div class="page-number">12</div>
+</div>
+
+<!-- PAGE 13: CHAPTER 3 - SYSTEM DESIGN AND TEST PLAN -->
+<div class="page">
+  <h2 style="margin-top: 40px;">CHAPTER 3<br>SYSTEM DESIGN AND TEST PLAN</h2>
+  
+  <h3>3.1 Decomposition Description</h3>
+  <p>
+    The system is decomposed into three logical architectural layers which interact over standard protocols:
+  </p>
+  <ul>
+    <li>
+      <span class="bold">Presentation Layer (Client SPA):</span> Structured in React 18, managing visual routing, local translations (LanguageContext), audio frequencies (SoundContext), and canvas board renderers.
+    </li>
+    <li>
+      <span class="bold">Logic Controllers (Express Server):</span> Controls route verification via middleware, implements board computation routines, seeds test users, and structures REST responses.
+    </li>
+    <li>
+      <span class="bold">Storage Layer (Mongoose & Memory Cache):</span> Stores collections matching User accounts and GameRecord history. Automatically switches write commands to local arrays if MongoDB database is inaccessible.
+    </li>
+  </ul>
+
+  <div class="diagram-container">
+    <svg width="450" height="200" viewBox="0 0 450 200" style="background:#fafafa; border:1px solid #ddd; border-radius:8px;">
+      <rect x="20" y="30" width="110" height="140" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" rx="8"/>
+      <text x="75" y="48" text-anchor="middle" font-weight="bold" font-size="11px" fill="#1e3a8a">React Front-End</text>
+      <rect x="30" y="65" width="90" height="20" fill="#fff" stroke="#3b82f6" rx="3"/>
+      <text x="75" y="78" text-anchor="middle" font-size="9px">SVG Game Engine</text>
+      <rect x="30" y="95" width="90" height="20" fill="#fff" stroke="#3b82f6" rx="3"/>
+      <text x="75" y="108" text-anchor="middle" font-size="9px">Bilingual Context</text>
+      <rect x="30" y="125" width="90" height="20" fill="#fff" stroke="#3b82f6" rx="3"/>
+      <text x="75" y="138" text-anchor="middle" font-size="9px">Web Audio Synth</text>
+
+      <line x1="130" y1="100" x2="170" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <text x="150" y="90" text-anchor="middle" font-size="8px" font-weight="bold">REST API</text>
+
+      <rect x="170" y="30" width="110" height="140" fill="#fef2f2" stroke="#ef4444" stroke-width="1.5" rx="8"/>
+      <text x="225" y="48" text-anchor="middle" font-weight="bold" font-size="11px" fill="#7f1d1d">Express Server</text>
+      <rect x="180" y="65" width="90" height="20" fill="#fff" stroke="#ef4444" rx="3"/>
+      <text x="225" y="78" text-anchor="middle" font-size="9px">JWT Auth Middleware</text>
+      <rect x="180" y="95" width="90" height="20" fill="#fff" stroke="#ef4444" rx="3"/>
+      <text x="225" y="108" text-anchor="middle" font-size="9px">Game Controller</text>
+      <rect x="180" y="125" width="90" height="20" fill="#fff" stroke="#ef4444" rx="3"/>
+      <text x="225" y="138" text-anchor="middle" font-size="9px">Memory Fallback</text>
+
+      <line x1="280" y1="75" x2="320" y2="75" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="300" y="68" text-anchor="middle" font-size="7px">MongoDB</text>
+      <line x1="280" y1="125" x2="320" y2="125" stroke="#333" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="300" y="118" text-anchor="middle" font-size="7px">In-Memory</text>
+
+      <rect x="320" y="30" width="110" height="140" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5" rx="8"/>
+      <text x="375" y="48" text-anchor="middle" font-weight="bold" font-size="11px" fill="#14532d">Data Layer</text>
+      <rect x="330" y="65" width="90" height="30" fill="#fff" stroke="#22c55e" rx="3"/>
+      <text x="375" y="78" text-anchor="middle" font-size="8px">Mongoose Models</text>
+      <text x="375" y="88" text-anchor="middle" font-size="7px" fill="#555">(User / GameRecord)</text>
+      
+      <rect x="330" y="115" width="90" height="30" fill="#fff" stroke="#22c55e" rx="3"/>
+      <text x="375" y="128" text-anchor="middle" font-size="8px">Memory Store</text>
+      <text x="375" y="138" text-anchor="middle" font-size="7px" fill="#555">(Arrays fallback)</text>
+    </svg>
+    <div class="diagram-caption">Figure 3.1 Overall System Architecture and Communication Channels</div>
+  </div>
+
+  <div class="page-number">13</div>
+</div>
+
+<!-- PAGE 14: CHAPTER 3 - SYSTEM DESIGN AND TEST PLAN (CONTINUED) -->
+<div class="page">
+  <h3>3.2 Dependency Description</h3>
+  <p>
+    The modular compilation requires that the Catalogue and Play views depend on the AuthContext module to identify if a score can be pushed to the server. If the player is unregistered, the application shifts to Guest Mode, suppressing POST actions to `/api/games/record`. All REST communication routes share a config library (`db.ts`) which validates whether Mongoose schemas can be compiled or if operations must fall back to memory arrays.
+  </p>
+  
+  <h3>3.3 Detailed Design</h3>
+  
+  <h4>3.3.1 Database Design</h4>
+  <p>
+    The application database comprises two collections under MongoDB or equivalent array structures:
+  </p>
+
+  <p class="bold" style="margin-top: 20px;">Table 3.1: Users Collection Schema</p>
+  <table>
+    <tr>
+      <th style="width: 25%;">Field</th>
+      <th style="width: 20%;">Type</th>
+      <th>Description / Defaults</th>
+    </tr>
+    <tr>
+      <td class="bold">username</td>
+      <td>String</td>
+      <td>Unique, required. Index key for identity lookup.</td>
+    </tr>
+    <tr>
+      <td class="bold">email</td>
+      <td>String</td>
+      <td>Unique, required. Encoded validation standard.</td>
+    </tr>
+    <tr>
+      <td class="bold">password</td>
+      <td>String</td>
+      <td>Hashed using bcryptjs.</td>
+    </tr>
+    <tr>
+      <td class="bold">profilePic</td>
+      <td>String</td>
+      <td>Avatar configuration string. Default: 'avatar1'</td>
+    </tr>
+    <tr>
+      <td class="bold">title</td>
+      <td>String</td>
+      <td>Awarded based on stats. Default: 'Heritage Learner'</td>
+    </tr>
+    <tr>
+      <td class="bold">xp</td>
+      <td>Number</td>
+      <td>Accumulated experience points. Default: 0</td>
+    </tr>
+    <tr>
+      <td class="bold">level</td>
+      <td>Number</td>
+      <td>Computed as Math.floor(xp / 100) + 1.</td>
+    </tr>
+    <tr>
+      <td class="bold">coins</td>
+      <td>Number</td>
+      <td>Awarded coins. Default: 100</td>
+    </tr>
+    <tr>
+      <td class="bold">gameStats</td>
+      <td>Object</td>
+      <td>Pointers to child objects tracking played/wins/losses/draws/highScore.</td>
+    </tr>
+  </table>
+
+  <p class="bold" style="margin-top: 30px;">Table 3.2: GameRecords Collection Schema</p>
+  <table>
+    <tr>
+      <th style="width: 25%;">Field</th>
+      <th style="width: 20%;">Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="bold">gameType</td>
+      <td>String</td>
+      <td>Enum: ['pallanguzhi', 'aadupuli', 'paramapadham', 'dayakattai'].</td>
+    </tr>
+    <tr>
+      <td class="bold">players</td>
+      <td>[String]</td>
+      <td>Array containing player usernames (e.g., ['player1', 'AI']).</td>
+    </tr>
+    <tr>
+      <td class="bold">winner</td>
+      <td>String</td>
+      <td>Winner username, or 'Draw' or 'AI'.</td>
+    </tr>
+    <tr>
+      <td class="bold">scores</td>
+      <td>Map (Number)</td>
+      <td>Maps player username &rarr; final integer score.</td>
+    </tr>
+    <tr>
+      <td class="bold">durationSeconds</td>
+      <td>Number</td>
+      <td>Duration of gameplay session.</td>
+    </tr>
+  </table>
+
+  <div class="page-number">14</div>
+</div>
+
+<!-- PAGE 15: CHAPTER 3 - SYSTEM DESIGN AND TEST PLAN (CONTINUED) -->
+<div class="page">
+  <h4>3.3.2 Game Logic Heuristics</h4>
+  <p>
+    The gameplay module relies on specific mathematical formulations for its AI players:
+  </p>
+  <ul>
+    <li>
+      <span class="bold">Aadu Puli Aattam:</span> Evaluated using a Minimax algorithm with a depth of 4. The evaluation function evaluates:
+      <div style="margin: 10px 0; text-align: center; font-size: 11pt; font-style: italic;">
+        Eval = w<sub>1</sub> &middot; (Active Goats) &ndash; w<sub>2</sub> &middot; (Captured Goats) &ndash; w<sub>3</sub> &middot; (Blocked Tigers)
+      </div>
+      where weights are balanced to prioritize trapping tigers or securing goat captures (Table 3.3).
+    </li>
+    <li>
+      <span class="bold">Pallanguzhi:</span> Solved using a greedy heuristic. The player evaluates the outcome of sowing from each of its 7 cups, selecting the cup that maximizes immediate captures (Kasu) or prevents opponent captures in the subsequent step.
+    </li>
+  </ul>
+
+  <p class="bold" style="margin-top: 20px;">Table 3.3: AI Heuristic Weights</p>
+  <table>
+    <tr>
+      <th>Heuristic Factor</th>
+      <th>Tiger Weight (w<sub>t</sub>)</th>
+      <th>Goat Weight (w<sub>g</sub>)</th>
+    </tr>
+    <tr>
+      <td>Goat Capture Achievement</td>
+      <td>+100</td>
+      <td>-150</td>
+    </tr>
+    <tr>
+      <td>Tiger Trapped / Blocked State</td>
+      <td>-80</td>
+      <td>+120</td>
+    </tr>
+    <tr>
+      <td>Safe/Protected Goat Placement</td>
+      <td>-10</td>
+      <td>+20</td>
+    </tr>
+  </table>
+
+  <h3>3.4 Proposed Sampling Methods</h3>
+  <p>
+    Validation inputs were created by generating structured sets of mock actions rather than arbitrary distributions. Representative test profiles containing 50 simulated match entries and 10 active player logs were seeded to verify sorting logic, level progression thresholds, and leaderboard ranks.
+  </p>
+
+  <h3>3.5 Test Plan</h3>
+  <p>
+    Testing followed functional black-box methods executing client integrations. Table 3.4 outlines the test cases.
+  </p>
+
+  <p class="bold" style="margin-top: 20px;">Table 3.4: Test Cases and Validation Outcomes</p>
+  <table style="font-size: 10pt;">
+    <tr>
+      <th>Test Case</th>
+      <th>Input Action</th>
+      <th>Expected System Output</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td>TC-01 Auth Success</td>
+      <td>Valid registration values</td>
+      <td>Creates profile, issues JWT, returns HTTP 201</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC-02 Rule Check</td>
+      <td>Move tiger over 2 goats</td>
+      <td>Block action (Only single jump allowed in Aadu Puli)</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC-03 DB Fallback</td>
+      <td>Disable Mongo; launch backend</td>
+      <td>Prints warning; shifts seamlessly to MemoryStore</td>
+      <td>Pass</td>
+    </tr>
+    <tr>
+      <td>TC-04 Localization</td>
+      <td>Click translation toggle</td>
+      <td>Switches text variables to Noto Sans Tamil</td>
+      <td>Pass</td>
+    </tr>
+  </table>
+
+  <div class="page-number">15</div>
+</div>
+
+<!-- PAGE 16: CHAPTER 4 - IMPLEMENTATION AND RESULTS -->
+<div class="page">
+  <h2 style="margin-top: 40px;">CHAPTER 4<br>IMPLEMENTATION AND RESULTS</h2>
+  
+  <h3>4.1 Implementation</h3>
+  <p>
+    The Tamil Heritage Games Hub is built using a unified TypeScript stack. This ensures structural coherence across components:
+  </p>
+  <ul>
+    <li><span class="bold">Front-End SPA:</span> Vite + React 18 with TypeScript. Component structures are designed to decouple canvas render interfaces from underlying state machines.</li>
+    <li><span class="bold">Styling System:</span> Custom CSS variables utilizing curated HSL palettes (e.g., clay orange, brass gold, light parchment, and dark charcoal). Traditional visual assets are rendered dynamically as inline SVGs.</li>
+    <li><span class="bold">Back-End Service:</span> Node.js with Express and TypeScript. REST APIs process actions, verify JWT signatures, and log results.</li>
+    <li><span class="bold">Database:</span> Mongoose models map User documents, supporting fallback structures.</li>
+  </ul>
+
+  <h4>4.1.1 Authentication & Profile Handling</h4>
+  <p>
+    Password storage is secured in both database and in-memory caches using salt hashing. JWT tokens are verified in the backend middleware layer, reading payloads:
+  </p>
+  <pre style="background: #f4f4f4; padding: 10px; border: 1px solid #ddd; font-family: monospace; font-size: 9.5pt; overflow-x: auto;">
+const token = req.headers.authorization?.split(' ')[1];
+if (!token) return res.status(401).json({ message: 'Access Denied' });
+const verified = jwt.verify(token, JWT_SECRET);
+req.user = verified;</pre>
+
+  <h4>4.1.2 Sound Generation via Web Audio API</h4>
+  <p>
+    Instead of loading large audio binaries, sounds (such as seed dropping in Pallanguzhi or dice rolls in Dayakattai) are synthesized using sound wave oscillators. This reduces load time to zero. The generator instantiates oscillators dynamically:
+  </p>
+  <pre style="background: #f4f4f4; padding: 10px; border: 1px solid #ddd; font-family: monospace; font-size: 9.5pt; overflow-x: auto;">
+const playSound = (freq: number, duration: number) => {
+  const ctx = new AudioContext();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain); gain.connect(ctx.destination);
+  osc.frequency.setValueAtTime(freq, ctx.currentTime);
+  gain.gain.setValueAtTime(0.1, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+  osc.start(); osc.stop(ctx.currentTime + duration);
+};</pre>
+
+  <div class="page-number">16</div>
+</div>
+
+<!-- PAGE 17: CHAPTER 4 - IMPLEMENTATION AND RESULTS (CONTINUED) -->
+<div class="page">
+  <h3>4.2 Results and UI Layouts</h3>
+  <p>
+    The full application renders responsively, scaling to mobile screens. The screens are described below:
+  </p>
+  <ul>
+    <li>
+      <span class="bold">Landing Portal:</span> Features a clean hero screen with Kolam watermarks, a summary of traditional titles, and language selection buttons (English/Tamil).
+    </li>
+    <li>
+      <span class="bold">Dashboard Panel:</span> Displays card lists for each game showing personal statistics (win/loss records), coins balance, level metrics, and recent matches.
+    </li>
+    <li>
+      <span class="bold">Pallanguzhi Screen:</span> Displays the 14 cups containing moving seed indicators, supporting animations for circular seed distribution.
+    </li>
+    <li>
+      <span class="bold">Aadu Puli Aattam Screen:</span> Features the triangular grid board with goats (circle markers) and tigers (large stylized icons). Shows real-time turn validation alerts.
+    </li>
+  </ul>
+
+  <div class="diagram-container" style="margin-top: 30px;">
+    <svg width="450" height="150" viewBox="0 0 450 150" style="background:#8b4a1d; border:5px solid #5a2e0f; border-radius:12px;">
+      <rect x="0" y="0" width="450" height="150" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+      <text x="110" y="25" fill="#e5c060" text-anchor="middle" font-weight="bold" font-size="11px">PALLANGUZHI BOARD</text>
+      <circle cx="50" cy="50" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="50" cy="50" r="2" fill="#fff"/><circle cx="47" cy="47" r="2" fill="#fff"/><circle cx="53" cy="52" r="2" fill="#fff"/>
+      <circle cx="90" cy="50" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="130" cy="50" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="170" cy="50" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="50" cy="100" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="90" cy="100" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="130" cy="100" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+      <circle cx="170" cy="100" r="16" fill="#4a2307" stroke="#e5c060" stroke-width="1.5"/>
+
+      <line x1="225" y1="10" x2="225" y2="140" stroke="#5a2e0f" stroke-width="4"/>
+
+      <text x="340" y="25" fill="#e5c060" text-anchor="middle" font-weight="bold" font-size="11px">AADU PULI AATTAM BOARD</text>
+      <polygon points="340,40 280,120 400,120" fill="none" stroke="#e5c060" stroke-width="2"/>
+      <line x1="340" y1="40" x2="340" y2="120" stroke="#e5c060" stroke-width="1.5"/>
+      <line x1="310" y1="80" x2="370" y2="80" stroke="#e5c060" stroke-width="1.5"/>
+      <line x1="295" y1="100" x2="385" y2="100" stroke="#e5c060" stroke-width="1.5"/>
+      
+      <circle cx="340" cy="40" r="6" fill="#ef4444" stroke="#fff" stroke-width="1"/>
+      <text x="340" y="35" fill="#ef4444" font-size="7px" font-weight="bold" text-anchor="middle">PULI</text>
+      <circle cx="310" cy="80" r="5" fill="#10b981" stroke="#fff" stroke-width="1"/>
+      <circle cx="340" cy="80" r="5" fill="#10b981" stroke="#fff" stroke-width="1"/>
+      <circle cx="280" cy="120" r="5" fill="#10b981" stroke="#fff" stroke-width="1"/>
+      <text x="270" y="130" fill="#10b981" font-size="7px" font-weight="bold">AADU</text>
+    </svg>
+    <div class="diagram-caption">Figure 4.2 Simulated Renders of Traditional Games in the Web App</div>
+  </div>
+
+  <div class="page-number">17</div>
+</div>
+
+<!-- PAGE 18: CHAPTER 5 - CONCLUSION AND FUTURE WORK -->
+<div class="page">
+  <h2 style="margin-top: 40px;">CHAPTER 5<br>CONCLUSION AND FUTURE WORK</h2>
+  
+  <h3>5.1 Summary</h3>
+  <p>
+    This project has successfully designed, developed, and verified the <span class="bold">Tamil Heritage Games Hub (THGH)</span>, a full-stack digital portal for Tamil traditional games. The system encapsulates complete game configurations for Aadu Puli Aattam, Dayakattai, Pallanguzhi, and Paramapadham under unified TypeScript interfaces. The implementation features a clean React application backed by a Node.js Express server utilizing JWT token authentication.
+  </p>
+  <p>
+    The architectural choice to connect with a MongoDB cluster while providing an automated, in-memory backup storage layer ensures high operational resilience, allowing the platform to run seamlessly offline or in localized server settings. Dynamic Web Audio frequencies successfully emulate tactile board responses without overhead latency. In summary, the hub achieves all target metrics, offering an accessible educational framework that preserves vital cultural heritage.
+  </p>
+  
+  <h3>5.2 Future Work</h3>
+  <p>
+    While the platform satisfies the core capstone deliverables, several functional expansions are proposed for future iterations:
+  </p>
+  <ul>
+    <li>
+      <span class="bold">Real-time Online Multiplayer:</span> Integrating Socket.io to allow remote players to join match lobbies, chat in real-time, and host tournaments.
+    </li>
+    <li>
+      <span class="bold">Mobile Native Bundles:</span> Wrapping the web bundle using Capacitor or Apache Cordova to export optimized native apps for Android and iOS devices.
+    </li>
+    <li>
+      <span class="bold">3D WebGL Boards:</span> Migrating the 2D SVG boards to fully textured 3D meshes using Three.js to provide a highly tactile experience.
+    </li>
+    <li>
+      <span class="bold">Deep Learning AI:</span> Implementing reinforcement learning models (e.g., Deep Q-Networks) to train AI players, offering adaptive difficulty tiers.
+    </li>
+  </ul>
+  
+  <div class="page-number">18</div>
+</div>
+
+<!-- PAGE 19: REFERENCES -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">REFERENCES</h2>
+  
+  <p style="margin-top: 40px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    1. Elmasri, R. and Navathe, S. B., "Fundamentals of Database Systems", 7th Edition, Pearson Education, 2016.
+  </p>
+  <p style="margin-top: 15px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    2. Sommerville, I., "Software Engineering", 10th Edition, Pearson Education, 2015.
+  </p>
+  <p style="margin-top: 15px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    3. Noto Sans Tamil Typography Guidelines, Google Fonts, available at <a href="https://fonts.google.com/specimen/Noto+Sans+Tamil" target="_blank">https://fonts.google.com/specimen/Noto+Sans+Tamil</a>, accessed April 2026.
+  </p>
+  <p style="margin-top: 15px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    4. MDN Web Docs, "Web Audio API: OscillatorNode and Spatial Audio Synthesis", Mozilla Foundation, available at <a href="https://developer.mozilla.org" target="_blank">https://developer.mozilla.org</a>, accessed March 2026.
+  </p>
+  <p style="margin-top: 15px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    5. Balambal, V., "Folk Games of Tamil Nadu", Heras Institute of Indian History and Culture, 2005.
+  </p>
+  <p style="margin-top: 15px; text-indent: -1cm; padding-left: 1cm; line-height: 1.8;">
+    6. Mongoose ODM Reference Guide, MongoDB Inc., available at <a href="https://mongoosejs.com" target="_blank">https://mongoosejs.com</a>, accessed February 2026.
+  </p>
+  
+  <div class="page-number">19</div>
+</div>
+
+<!-- PAGE 20: APPENDICES -->
+<div class="page">
+  <h2 class="center" style="margin-top: 40px; text-decoration: underline;">APPENDICES</h2>
+  
+  <h3 style="margin-top: 30px;">Appendix A &ndash; Sample Screenshots</h3>
+  <p>
+    The interactive features of the web application are demonstrated through client-side captures:
+  </p>
+  <ul>
+    <li><span class="bold">Hub Landing page:</span> Hosts language buttons, animated Kolam watermarks, and options for registration and play.</li>
+    <li><span class="bold">Dashboard screen:</span> Outlines statistics charts, level meters, cumulative coin balances, and title tags (e.g., Tiger Strategist).</li>
+    <li><span class="bold">Interactive gameplay sheets:</span> Dynamic board animations representing Pallanguzhi pits, Paramapadham ladders, Aadu Puli moves, and Dayakattai dice rotations.</li>
+  </ul>
+  
+  <h3 style="margin-top: 30px;">Appendix B &ndash; Sample Source Code</h3>
+  <p>
+    Excerpts highlighting core database fallback connectivity:
+  </p>
+  <p class="italic bold" style="margin-top: 10px;">db.ts (MongoDB Connection and Local Fallback Switch):</p>
+  <pre style="background: #f4f4f4; padding: 10px; border: 1px solid #ddd; font-family: monospace; font-size: 9pt; overflow-x: auto; margin-top: 5px;">
+export const connectDB = async () => {
+  const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/tamil_heritage_games';
+  try {
+    await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 3000 });
+    isMongoConnected = true;
+    console.log('✔ MongoDB Connected: ' + MONGO_URI);
+  } catch (error) {
+    isMongoConnected = false;
+    console.warn('⚠ Fallback active: In-Memory Storage Mode enabled.');
+  }
+};</pre>
+
+  <div class="page-number">20</div>
+</div>
+
+</body>
+</html>
