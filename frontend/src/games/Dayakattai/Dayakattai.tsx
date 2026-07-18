@@ -75,6 +75,7 @@ export const Dayakattai: React.FC = () => {
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const [tutorialStep, setTutorialStep] = useState<number>(0);
+  const [showPulavarIntro, setShowPulavarIntro] = useState<boolean>(true);
 
   const tutorialTexts = [
     { title: 'The Dayakattai Race', body: 'Each player has 4 tokens starting off-board. The goal is to navigate all 4 tokens around the board to the center HOME (2,2).' },
@@ -554,6 +555,97 @@ export const Dayakattai: React.FC = () => {
         </div>
       )}
 
+      {/* Tamil Pulavar Welcome & Rules Intro Modal */}
+      {showPulavarIntro && (
+        <div style={tutorialOverlayStyle}>
+          <div className="glass animate-fade" style={pulavarModalStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem', textAlign: 'center' }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/tamil_pulavar.jpg" 
+                  alt="Tamil Pulavar" 
+                  style={{ 
+                    width: '120px', 
+                    height: '120px', 
+                    borderRadius: '50%', 
+                    border: '4px solid var(--secondary)',
+                    boxShadow: '0 4px 15px rgba(229,192,96,0.5)',
+                    objectFit: 'cover'
+                  }} 
+                />
+                <span style={{ position: 'absolute', bottom: '0', right: '5px', fontSize: '1.6rem' }}>🎲</span>
+              </div>
+              
+              <div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--primary)', fontWeight: 'bold', marginBottom: '0.2rem' }}>
+                  {language === 'en' ? 'Tamil Pulavar Guide' : 'தமிழ் புலவர் வழிகாட்டி'}
+                </h3>
+                <p style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                  {language === 'en' ? '"The race of life relies on destiny\'s roll, but victory belongs to strategic pathways."' : '"விதியின் உருட்டல் பாதையை அமைக்கும், ஆனால் மதியின் நகர்வே வெற்றியைத் தரும்."'}
+                </p>
+              </div>
+
+              <div style={{ width: '100%', maxHeight: '240px', overflowY: 'auto', textAlign: 'left', padding: '0 0.5rem', margin: '0.5rem 0' }}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '📜 Cultural Origin & Significance' : '📜 கலாச்சார பின்னணி'}
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5' }}>
+                    {language === 'en' 
+                      ? 'Dayakattai is a historical Tamil race game. It represents the journey of life through obstacles, safe havens, and direct conflict. Players roll long brass dice to race their pawns around the outer path, with the goal of entering the inner sanctuary to reach the center Palace (Home).'
+                      : 'தாயக்கட்டை என்பது பாரம்பரிய தமிழ் ஓட்டப் பந்தய விளையாட்டு ஆகும். தடைகள், புகலிடங்கள் மற்றும் எதிர்ப்புகளின் வழியே கடக்கும் வாழ்க்கை நெறியை இது குறிக்கிறது. நீளப்பகடையை உருட்டி, காய்களை வெட்டி வீழ்த்தி, உள்வட்டத்தின் வழியே நடுமனையை (பழம்) அடையப் போராடுவதே இதன் நோக்கம்.'}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '🎮 Game Rules' : '🎮 விளையாட்டு விதிகள்'}
+                  </h4>
+                  <ul style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5', paddingLeft: '1.2rem', margin: 0 }}>
+                    {language === 'en' ? (
+                      <>
+                        <li>Each player has 4 tokens starting off-board.</li>
+                        <li>To enter a token onto the board starting safe zone, you must roll a **1 (Dhaayam)**.</li>
+                        <li>Rolls of **1, 5, or 12** grant you an **extra roll**! Rolls accumulate in a pool.</li>
+                        <li>Safe zones (✕) are safe; landing elsewhere on an opponent cuts their token.</li>
+                        <li>**CRITICAL**: You **must cut** at least one opponent token to enter the center **HOME**!</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>விளையாடுபவருக்கு தலா 4 காய்கள் உண்டு. அவை முதலில் களத்திற்கு வெளியே இருக்கும்.</li>
+                        <li>களத்தில் காயைத் தொடங்க **1 (தாயம்)** விழ வேண்டும்.</li>
+                        <li>பகடையில் **1, 5, அல்லது 12** விழுந்தால் மீண்டும் பகடையை உருட்ட வாய்ப்பு கிடைக்கும்!</li>
+                        <li>பாதுகாப்பு கட்டங்களில் ✕ காய்களை வெட்ட முடியாது; மற்ற கட்டங்களில் எதிரிக் காயை வெட்டலாம்.</li>
+                        <li>**முக்கிய விதி**: எதிரியின் காயை வெட்டினால் மட்டுமே உள்வட்டப் பாதை திறந்து நடுமனையை அடைய முடியும்!</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setShowPulavarIntro(false)}
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  background: 'var(--brass-grain)', 
+                  color: '#3b2005', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 10px rgba(178,138,42,0.3)',
+                  transition: 'transform 0.1s ease'
+                }}
+              >
+                {language === 'en' ? 'Enter Heritage Game' : 'ஆட்டத்தைத் தொடங்கு'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+
       {/* Header Info */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
@@ -1002,4 +1094,16 @@ const statusBannerStyle = (gameOver: boolean) => ({
   boxShadow: 'var(--shadow-sm)',
   borderLeft: `5px solid ${gameOver ? '#fff' : 'var(--primary)'}`,
 });
+
+const pulavarModalStyle = {
+  padding: '2.5rem 2rem',
+  borderRadius: '20px',
+  width: '480px',
+  maxWidth: '92%',
+  boxShadow: 'var(--shadow-lg), 0 10px 30px rgba(0,0,0,0.4)',
+  border: '2.5px solid var(--secondary)',
+  outline: 'none',
+  backgroundColor: 'var(--bg-card)',
+};
+
 

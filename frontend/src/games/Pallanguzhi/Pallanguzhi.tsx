@@ -23,6 +23,7 @@ export const Pallanguzhi: React.FC = () => {
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const [tutorialStep, setTutorialStep] = useState<number>(0);
+  const [showPulavarIntro, setShowPulavarIntro] = useState<boolean>(true);
 
   const tutorialTexts = [
     { title: 'Goal of Pallanguzhi', body: 'Capture more seeds than your opponent. The board contains 14 cups (7 on your side, 7 on the opponent\'s side).' },
@@ -289,6 +290,97 @@ export const Pallanguzhi: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Tamil Pulavar Welcome & Rules Intro Modal */}
+      {showPulavarIntro && (
+        <div style={tutorialOverlayStyle}>
+          <div className="glass animate-fade" style={pulavarModalStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem', textAlign: 'center' }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/tamil_pulavar.jpg" 
+                  alt="Tamil Pulavar" 
+                  style={{ 
+                    width: '120px', 
+                    height: '120px', 
+                    borderRadius: '50%', 
+                    border: '4px solid var(--secondary)',
+                    boxShadow: '0 4px 15px rgba(229,192,96,0.5)',
+                    objectFit: 'cover'
+                  }} 
+                />
+                <span style={{ position: 'absolute', bottom: '0', right: '5px', fontSize: '1.6rem' }}>🐚</span>
+              </div>
+              
+              <div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--primary)', fontWeight: 'bold', marginBottom: '0.2rem' }}>
+                  {language === 'en' ? 'Tamil Pulavar Guide' : 'தமிழ் புலவர் வழிகாட்டி'}
+                </h3>
+                <p style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                  {language === 'en' ? '"Sow seeds of generosity, harvest with mathematical wisdom."' : '"வழங்குவதில் அறமும், பகிர்வதில் அறிவும் கொண்டதே பல்லாங்குழி."'}
+                </p>
+              </div>
+
+              <div style={{ width: '100%', maxHeight: '240px', overflowY: 'auto', textAlign: 'left', padding: '0 0.5rem', margin: '0.5rem 0' }}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '📜 Cultural Origin & Significance' : '📜 கலாச்சார பின்னணி'}
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5' }}>
+                    {language === 'en' 
+                      ? 'Pallanguzhi is a classical southern Indian sowing board game. Historically, it was used to improve mental arithmetic, foresight, and natural resource distribution skills. It symbolizes the agrarian cycle of sowing, harvesting, and sharing grains.'
+                      : 'பல்லாங்குழி என்பது தென்னிந்தியாவின் பாரம்பரிய விதைப்பு விளையாட்டு ஆகும். மனக்கணக்கு, தொலைநோக்கு பார்வை, மற்றும் வளப்பகிர்வை வளர்க்க இது ஆடப்பட்டது. விதைப்பது, அறுவடை செய்வது மற்றும் தானியங்களை பகிர்ந்துண்ணும் வேளாண் சுழற்சியை இது குறிக்கிறது.'}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '🎮 Game Rules' : '🎮 விளையாட்டு விதிகள்'}
+                  </h4>
+                  <ul style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5', paddingLeft: '1.2rem', margin: 0 }}>
+                    {language === 'en' ? (
+                      <>
+                        <li>Each cup starts with 5 seeds (cowrie shells). Select any cup on your side to pick up and sow.</li>
+                        <li>Seeds are dropped one-by-one counter-clockwise into subsequent cups.</li>
+                        <li>If your last seed lands in a cup with seeds, scoop them all up and continue sowing.</li>
+                        <li>If your last seed lands and the next cup is empty, capture all seeds in the cup AFTER the empty cup!</li>
+                        <li>Game ends when one side has no seeds left to play.</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>ஒவ்வொரு குழியிலும் 5 முத்துக்கள் இருக்கும். உங்கள் பக்கமுள்ள ஒரு குழியைத் தேர்ந்தெடுத்து ஆட்டத்தைத் தொடங்கவும்.</li>
+                        <li>முத்துக்கள் ஒவ்வொன்றாக அடுத்தடுத்த குழிகளில் கடிகார எதிர்த்திசையில் விநியோகிக்கப்படும்.</li>
+                        <li>கடைசி முத்து விழுந்த குழியில் முத்துக்கள் இருந்தால், அவற்றை எடுத்து மீண்டும் விநியோகிக்க வேண்டும்.</li>
+                        <li>கடைசி முத்து விழுந்த குழியை அடுத்துள்ள குழி காலியாக இருந்தால், அதற்கு அடுத்த குழியிலுள்ள அனைத்து முத்துக்களையும் கைப்பற்றலாம்!</li>
+                        <li>தனது பகுதியில் நகர்த்த முத்துக்கள் எதுவும் இல்லாதபோது ஆட்டம் முடிவுக்கு வரும்.</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setShowPulavarIntro(false)}
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  background: 'var(--brass-grain)', 
+                  color: '#3b2005', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 10px rgba(178,138,42,0.3)',
+                  transition: 'transform 0.1s ease'
+                }}
+              >
+                {language === 'en' ? 'Enter Heritage Game' : 'ஆட்டத்தைத் தொடங்கு'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
       {/* Header Info */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
@@ -624,4 +716,16 @@ const resetBtnStyle = {
   backgroundColor: 'var(--bg-card)',
   color: 'var(--text-main)',
 };
+
+const pulavarModalStyle = {
+  padding: '2.5rem 2rem',
+  borderRadius: '20px',
+  width: '480px',
+  maxWidth: '92%',
+  boxShadow: 'var(--shadow-lg), 0 10px 30px rgba(0,0,0,0.4)',
+  border: '2.5px solid var(--secondary)',
+  outline: 'none',
+  backgroundColor: 'var(--bg-card)',
+};
+
 

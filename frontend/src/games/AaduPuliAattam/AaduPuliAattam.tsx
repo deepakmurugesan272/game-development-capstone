@@ -123,6 +123,7 @@ export const AaduPuliAattam: React.FC = () => {
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('medium');
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const [tutorialStep, setTutorialStep] = useState<number>(0);
+  const [showPulavarIntro, setShowPulavarIntro] = useState<boolean>(true);
 
   const tutorialTexts = [
     { title: 'Tigers vs Goats', body: 'Aadu Puli Aattam is an asymmetrical game of strength vs unity. One player controls 3 Tigers, and the other controls 15 Goats.' },
@@ -489,6 +490,96 @@ export const AaduPuliAattam: React.FC = () => {
                 style={{ ...tutBtnStyle(false), backgroundColor: 'var(--primary)', color: '#fff', border: 'none' }}
               >
                 {tutorialStep === 3 ? 'Finish' : 'Next'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tamil Pulavar Welcome & Rules Intro Modal */}
+      {showPulavarIntro && (
+        <div style={tutorialOverlayStyle}>
+          <div className="glass animate-fade" style={pulavarModalStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem', textAlign: 'center' }}>
+              <div style={{ position: 'relative' }}>
+                <img 
+                  src="/tamil_pulavar.jpg" 
+                  alt="Tamil Pulavar" 
+                  style={{ 
+                    width: '120px', 
+                    height: '120px', 
+                    borderRadius: '50%', 
+                    border: '4px solid var(--secondary)',
+                    boxShadow: '0 4px 15px rgba(229,192,96,0.5)',
+                    objectFit: 'cover'
+                  }} 
+                />
+                <span style={{ position: 'absolute', bottom: '0', right: '5px', fontSize: '1.6rem' }}>🐯</span>
+              </div>
+              
+              <div>
+                <h3 style={{ fontSize: '1.5rem', color: 'var(--primary)', fontWeight: 'bold', marginBottom: '0.2rem' }}>
+                  {language === 'en' ? 'Tamil Pulavar Guide' : 'தமிழ் புலவர் வழிகாட்டி'}
+                </h3>
+                <p style={{ fontStyle: 'italic', color: 'var(--text-muted)', fontSize: '0.88rem' }}>
+                  {language === 'en' ? '"Strength without unity falls to strategy. Study your hunter, trap with wisdom."' : '"ஒற்றுமை இல்லா வலிமை வீழும். எதிரியை அறிந்து, உத்தியால் முடக்கு."'}
+                </p>
+              </div>
+
+              <div style={{ width: '100%', maxHeight: '240px', overflowY: 'auto', textAlign: 'left', padding: '0 0.5rem', margin: '0.5rem 0' }}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '📜 Cultural Origin & Significance' : '📜 கலாச்சார பின்னணி'}
+                  </h4>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5' }}>
+                    {language === 'en' 
+                      ? 'Aadu Puli Aattam (Goats and Tigers) is an ancient, asymmetric tactical board game from southern India. It portrays a battle between a small group of apex predators (3 Tigers) and a larger flock of prey (15 Goats). It teaches cooperation, defensive blockades, and hunting tactics.'
+                      : 'ஆடு புலி ஆட்டம் என்பது தென்னிந்தியாவின் பாரம்பரிய, சமச்சீரற்ற உத்தி விளையாட்டு ஆகும். இது 3 புலிகளின் வலிமைக்கும் 15 ஆடுகளின் ஒற்றுமைக்கும் இடையே நடக்கும் போரைக் காட்டுகிறது. கூட்டுச் செயல்பாடு, அரண் அமைத்தல், மற்றும் வேட்டைத் தந்திரங்களை இது கற்றுக்கொடுக்கிறது.'}
+                  </p>
+                </div>
+
+                <div>
+                  <h4 style={{ color: 'var(--secondary)', fontSize: '0.95rem', fontWeight: 'bold', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.2rem', marginBottom: '0.4rem' }}>
+                    {language === 'en' ? '🎮 Game Rules' : '🎮 விளையாட்டு விதிகள்'}
+                  </h4>
+                  <ul style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: '1.5', paddingLeft: '1.2rem', margin: 0 }}>
+                    {language === 'en' ? (
+                      <>
+                        <li>3 Tigers start on the board apex and center intersections.</li>
+                        <li>**Goat Placement**: Place goats one by one on empty spaces. Tigers move/jump between placements.</li>
+                        <li>**Movement**: Once all 15 goats are on board, goats can move to adjacent empty nodes.</li>
+                        <li>**Tiger Jumps**: Tigers capture a goat by jumping over it in a straight line onto an empty space behind it.</li>
+                        <li>Goats win by trapping all 3 tigers. Tigers win by capturing 5 goats.</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>3 புலிகள் முக்கோணக் கட்டத்தின் உச்சி மற்றும் நடுப் புள்ளிகளில் இருக்கும்.</li>
+                        <li>**ஆடு வைக்கும் நிலை**: 15 ஆடுகளையும் ஒவ்வொன்றாக காலியான புள்ளிகளில் வைக்க வேண்டும்.</li>
+                        <li>**நகர்த்தும் நிலை**: 15 ஆடுகளும் களத்தில் வைக்கப்பட்ட பின்பு, ஆடுகள் தங்களுக்கு அடுத்த காலியான புள்ளிகளுக்கு நகரும்.</li>
+                        <li>**புலி வேட்டை**: புலிகள் ஆடுகளைத் தாண்டி வெட்டி வீழ்த்த முயலும்.</li>
+                        <li>புலிகளை முடக்கினால் ஆடுகளுக்கு வெற்றி. 5 ஆடுகளை வெட்டினால் புலிகளுக்கு வெற்றி.</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => setShowPulavarIntro(false)}
+                style={{ 
+                  width: '100%', 
+                  padding: '0.75rem', 
+                  background: 'var(--brass-grain)', 
+                  color: '#3b2005', 
+                  border: 'none', 
+                  borderRadius: '8px', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 10px rgba(178,138,42,0.3)',
+                  transition: 'transform 0.1s ease'
+                }}
+              >
+                {language === 'en' ? 'Enter Heritage Game' : 'ஆட்டத்தைத் தொடங்கு'}
               </button>
             </div>
           </div>
@@ -867,3 +958,15 @@ const tutBtnStyle = (disabled: boolean) => ({
   fontWeight: 'bold',
   fontSize: '0.85rem'
 });
+
+const pulavarModalStyle = {
+  padding: '2.5rem 2rem',
+  borderRadius: '20px',
+  width: '480px',
+  maxWidth: '92%',
+  boxShadow: 'var(--shadow-lg), 0 10px 30px rgba(0,0,0,0.4)',
+  border: '2.5px solid var(--secondary)',
+  outline: 'none',
+  backgroundColor: 'var(--bg-card)',
+};
+
