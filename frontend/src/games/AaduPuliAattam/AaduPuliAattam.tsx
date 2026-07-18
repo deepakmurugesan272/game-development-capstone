@@ -146,7 +146,7 @@ export const AaduPuliAattam: React.FC = () => {
   const checkGameOver = (currentTigers: number[], currentGoats: number[], killedCount: number) => {
     if (killedCount >= 5) {
       setGameOver(true);
-      setMessage('Game Over! Tigers Win (Killed 5 Goats).');
+      setMessage(language === 'en' ? 'Game Over! Tigers Win (Killed 5 Goats).' : 'ஆட்டம் முடிந்தது! புலிகள் வென்றன (5 ஆடுகள் வெட்டப்பட்டன).');
       const username = user?.username || 'Guest';
       
       if (gameMode === 'ai_goat') {
@@ -173,7 +173,7 @@ export const AaduPuliAattam: React.FC = () => {
 
     if (!hasMove) {
       setGameOver(true);
-      setMessage('Game Over! Goats Win (Tigers Trapped).');
+      setMessage(language === 'en' ? 'Game Over! Goats Win (Tigers Trapped).' : 'ஆட்டம் முடிந்தது! ஆடுகள் வென்றன (புலிகள் முடக்கப்பட்டன).');
       const username = user?.username || 'Guest';
       
       if (gameMode === 'ai_tiger') {
@@ -208,7 +208,7 @@ export const AaduPuliAattam: React.FC = () => {
         const isOver = checkGameOver(tigers, newGoats, goatsKilled);
         if (!isOver) {
           setIsGoatTurn(false);
-          setMessage('Tiger Turn: Move an adjacent Tiger or jump/kill a Goat.');
+          setMessage(language === 'en' ? 'Tiger Turn: Move an adjacent Tiger or jump/kill a Goat.' : 'புலி முறை: புலியை நகர்த்தவும் அல்லது ஆட்டை வெட்டவும்.');
         }
       } else {
         if (selectedPiece === null) {
@@ -227,7 +227,7 @@ export const AaduPuliAattam: React.FC = () => {
             const isOver = checkGameOver(tigers, newGoats, goatsKilled);
             if (!isOver) {
               setIsGoatTurn(false);
-              setMessage('Tiger Turn: Move a Tiger.');
+              setMessage(language === 'en' ? 'Tiger Turn: Move a Tiger.' : 'புலி முறை: புலியை நகர்த்தவும்.');
             }
           } else {
             if (goats.includes(nodeId)) {
@@ -277,8 +277,8 @@ export const AaduPuliAattam: React.FC = () => {
           if (!isOver) {
             setIsGoatTurn(true);
             setMessage(goatsPlaced < 15 
-              ? `Goat Placement Phase: Place Goat ${goatsPlaced + 1} of 15.` 
-              : 'Goat Move Phase: Move a Goat.'
+              ? (language === 'en' ? `Goat Placement Phase: Place Goat ${goatsPlaced + 1} of 15.` : `ஆடு வைக்கும் முறை: 15-ல் ${goatsPlaced + 1} ஆட்டை வைக்கவும்.`)
+              : (language === 'en' ? 'Goat Move Phase: Move a Goat.' : 'ஆடு நகர்த்தும் முறை: ஆட்டை நகர்த்தவும்.')
             );
           }
         } else {
@@ -375,8 +375,8 @@ export const AaduPuliAattam: React.FC = () => {
     if (!isOver) {
       setIsGoatTurn(true);
       setMessage(goatsPlaced < 15 
-        ? `Goat Placement Phase: Place Goat ${goatsPlaced + 1} of 15.` 
-        : 'Goat Move Phase: Move a Goat.'
+        ? (language === 'en' ? `Goat Placement Phase: Place Goat ${goatsPlaced + 1} of 15.` : `ஆடு வைக்கும் முறை: 15-ல் ${goatsPlaced + 1} ஆட்டை வைக்கவும்.`)
+        : (language === 'en' ? 'Goat Move Phase: Move a Goat.' : 'ஆடு நகர்த்தும் முறை: ஆட்டை நகர்த்தவும்.')
       );
     }
   };
@@ -412,7 +412,7 @@ export const AaduPuliAattam: React.FC = () => {
       const isOver = checkGameOver(tigers, newGoats, goatsKilled);
       if (!isOver) {
         setIsGoatTurn(false);
-        setMessage('Tiger Turn: Tigers make their move...');
+        setMessage(language === 'en' ? 'Tiger Turn: Tigers make their move...' : 'புலி முறை: கணினி புலியை நகர்த்துகிறது...');
       }
     } else {
       const availableMoves: { goat: number; to: number }[] = [];
@@ -428,13 +428,12 @@ export const AaduPuliAattam: React.FC = () => {
       if (difficulty !== 'easy') {
         let bestScore = -100;
         for (const move of availableMoves) {
-          // Heuristics: prioritize moves that block Tiger's mobility (i.e. adjacency count drops)
           const nextGoats = goats.map(g => g === move.goat ? move.to : g);
           const tigerMobility = tigers.reduce((acc, t) => {
             return acc + ADJACENCY[t].filter(n => !tigers.includes(n) && !nextGoats.includes(n)).length;
           }, 0);
           
-          let score = -tigerMobility; // minimize mobility
+          let score = -tigerMobility; 
           if (score > bestScore) {
             bestScore = score;
             selectedMove = move;
@@ -449,7 +448,7 @@ export const AaduPuliAattam: React.FC = () => {
       const isOver = checkGameOver(tigers, newGoats, goatsKilled);
       if (!isOver) {
         setIsGoatTurn(false);
-        setMessage('Tiger Turn: Tigers make their move...');
+        setMessage(language === 'en' ? 'Tiger Turn: Tigers make their move...' : 'புலி முறை: கணினி புலியை நகர்த்துகிறது...');
       }
     }
   };
@@ -500,10 +499,14 @@ export const AaduPuliAattam: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h2 style={{ fontSize: '2rem', color: 'var(--primary)' }}>ஆடு புலி ஆட்டம் / Aadu Puli Aattam</h2>
-          <p style={{ color: 'var(--text-muted)' }}>Goats and Tigers: A traditional Tamil strategic hunt game of wits and blockades.</p>
+          <p style={{ color: 'var(--text-muted)' }}>
+            {language === 'en' 
+              ? 'Goats and Tigers: A traditional Tamil strategic hunt game of wits and blockades.' 
+              : 'ஆடு புலி ஆட்டம்: ஆடுகளின் ஒற்றுமைக்கும் புலிகளின் பலத்திற்கும் இடையே நடக்கும் உத்தி வேட்டை.'}
+          </p>
         </div>
         
-        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button 
             onClick={() => { setShowTutorial(true); setTutorialStep(0); }}
             style={{ ...resetBtnStyle, color: 'var(--primary)' }}
@@ -517,9 +520,9 @@ export const AaduPuliAattam: React.FC = () => {
               onChange={(e) => setDifficulty(e.target.value as any)}
               style={selectDifficultyStyle}
             >
-              <option value="easy">Easy AI</option>
-              <option value="medium">Medium AI</option>
-              <option value="hard">Hard AI</option>
+              <option value="easy">{language === 'en' ? 'Easy AI' : 'எளிதான கணினி'}</option>
+              <option value="medium">{language === 'en' ? 'Medium AI' : 'நடுத்தர கணினி'}</option>
+              <option value="hard">{language === 'en' ? 'Smart AI' : 'சாமர்த்திய கணினி'}</option>
             </select>
           )}
 
@@ -528,9 +531,9 @@ export const AaduPuliAattam: React.FC = () => {
             onChange={(e) => { setGameMode(e.target.value as any); initGame(); }}
             style={selectStyle}
           >
-            <option value="ai_tiger">Play as Goats (vs Tiger AI)</option>
-            <option value="ai_goat">Play as Tigers (vs Goat AI)</option>
-            <option value="local">Pass & Play (Local 2P)</option>
+            <option value="ai_tiger">{language === 'en' ? 'Play as Goats (vs Tiger AI)' : 'ஆடாக விளையாடு (கணினி புலி)'}</option>
+            <option value="ai_goat">{language === 'en' ? 'Play as Tigers (vs Goat AI)' : 'புலியாக விளையாடு (கணினி ஆடு)'}</option>
+            <option value="local">{language === 'en' ? 'Pass & Play (Local 2P)' : 'நண்பருடன் விளையாடு (உள்ளூர்)'}</option>
           </select>
           <button onClick={initGame} style={resetBtnStyle}>
             <RotateCcw size={16} /> {t('reset')}
@@ -541,58 +544,98 @@ export const AaduPuliAattam: React.FC = () => {
       {/* Stats Board */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
         <div style={statBoxStyle}>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Goats Placed</div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--primary)' }}>{goatsPlaced} / 15</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+            {language === 'en' ? 'Goats Placed' : 'வைக்கப்பட்ட ஆடுகள்'}
+          </div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--primary)', marginTop: '0.2rem' }}>{goatsPlaced} / 15</div>
         </div>
         <div style={statBoxStyle}>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Goats Trapped / Active</div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--success)' }}>{goats.length}</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+            {language === 'en' ? 'Active Goats' : 'களத்தில் உள்ள ஆடுகள்'}
+          </div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--success)', marginTop: '0.2rem' }}>{goats.length}</div>
         </div>
         <div style={statBoxStyle}>
-          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Goats Killed (Max 5)</div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--danger)' }}>{goatsKilled} / 5</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+            {language === 'en' ? 'Goats Killed' : 'வெட்டப்பட்ட ஆடுகள்'}
+          </div>
+          <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--danger)', marginTop: '0.2rem' }}>{goatsKilled} / 5</div>
         </div>
       </div>
 
-      {/* SVG Triangular Game Board */}
-      <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: 'var(--bg-card)', padding: '1.5rem', borderRadius: '16px', boxShadow: 'var(--shadow-md)', marginBottom: '1.5rem', position: 'relative' }}>
+      {/* SVG Triangular Game Board with realistic wooden board frame styling */}
+      <div 
+        className="wood-board" 
+        style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          padding: '2rem', 
+          borderRadius: '16px', 
+          boxShadow: 'var(--shadow-lg), 0 10px 25px rgba(139, 74, 29, 0.25)', 
+          marginBottom: '1.5rem', 
+          position: 'relative',
+          backgroundColor: '#fbf8f3',
+          border: '8px solid #5a2e0f',
+          backgroundImage: 'linear-gradient(rgba(251, 248, 243, 0.9), rgba(251, 248, 243, 0.9)), var(--wood-grain)'
+        }}
+      >
+        {/* Brass corner brackets decorative accents */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '16px', height: '16px', borderTop: '3px solid #e5c060', borderLeft: '3px solid #e5c060' }} />
+        <div style={{ position: 'absolute', top: 0, right: 0, width: '16px', height: '16px', borderTop: '3px solid #e5c060', borderRight: '3px solid #e5c060' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '16px', height: '16px', borderBottom: '3px solid #e5c060', borderLeft: '3px solid #e5c060' }} />
+        <div style={{ position: 'absolute', bottom: 0, right: 0, width: '16px', height: '16px', borderBottom: '3px solid #e5c060', borderRight: '3px solid #e5c060' }} />
+
         <svg 
           width="400" 
           height="400" 
           viewBox="0 0 400 400"
           style={{ overflow: 'visible' }}
         >
-          {/* Draw Board Lines */}
-          <line x1="200" y1="30" x2="0" y2="350" stroke="var(--text-main)" strokeWidth="3" />
-          <line x1="200" y1="30" x2="400" y2="350" stroke="var(--text-main)" strokeWidth="3" />
-          
-          <line x1="200" y1="30" x2="100" y2="350" stroke="var(--text-main)" strokeWidth="2" />
-          <line x1="200" y1="30" x2="200" y2="350" stroke="var(--text-main)" strokeWidth="2" />
-          <line x1="200" y1="30" x2="300" y2="350" stroke="var(--text-main)" strokeWidth="2" />
+          <defs>
+            <radialGradient id="tigerGrad" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stopColor="#fbbf24" />
+              <stop offset="65%" stopColor="#d97706" />
+              <stop offset="100%" stopColor="#78350f" />
+            </radialGradient>
+            <radialGradient id="goatGrad" cx="35%" cy="35%" r="65%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="70%" stopColor="#f1f5f9" />
+              <stop offset="100%" stopColor="#cbd5e1" />
+            </radialGradient>
+          </defs>
 
-          <line x1="150" y1="110" x2="250" y2="110" stroke="var(--text-main)" strokeWidth="2" />
-          <line x1="100" y1="190" x2="300" y2="190" stroke="var(--text-main)" strokeWidth="2" />
-          <line x1="50" y1="270" x2="350" y2="270" stroke="var(--text-main)" strokeWidth="2" />
-          <line x1="0" y1="350" x2="400" y2="350" stroke="var(--text-main)" strokeWidth="3" />
+          {/* Draw Board Lines in deep rich charcoal wood-engraved color */}
+          <line x1="200" y1="30" x2="0" y2="350" stroke="#4a2e1b" strokeWidth="4.5" strokeLinecap="round" />
+          <line x1="200" y1="30" x2="400" y2="350" stroke="#4a2e1b" strokeWidth="4.5" strokeLinecap="round" />
+          
+          <line x1="200" y1="30" x2="100" y2="350" stroke="#5c4033" strokeWidth="3" />
+          <line x1="200" y1="30" x2="200" y2="350" stroke="#5c4033" strokeWidth="3" />
+          <line x1="200" y1="30" x2="300" y2="350" stroke="#5c4033" strokeWidth="3" />
+
+          <line x1="150" y1="110" x2="250" y2="110" stroke="#5c4033" strokeWidth="3" />
+          <line x1="100" y1="190" x2="300" y2="190" stroke="#5c4033" strokeWidth="3" />
+          <line x1="50" y1="270" x2="350" y2="270" stroke="#5c4033" strokeWidth="3" />
+          <line x1="0" y1="350" x2="400" y2="350" stroke="#4a2e1b" strokeWidth="4.5" strokeLinecap="round" />
 
           {/* Left Wing lines */}
-          <line x1="150" y1="110" x2="75" y2="150" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="75" y1="150" x2="100" y2="190" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="100" y1="190" x2="25" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="25" y1="230" x2="50" y2="270" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="50" y1="270" x2="25" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="25" y1="230" x2="0" y2="350" stroke="var(--text-main)" strokeWidth="1.5" strokeDasharray="3 3" />
-          <line x1="75" y1="150" x2="25" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
+          <line x1="150" y1="110" x2="75" y2="150" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="75" y1="150" x2="100" y2="190" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="100" y1="190" x2="25" y2="230" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="25" y1="230" x2="50" y2="270" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="50" y1="270" x2="25" y2="230" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="25" y1="230" x2="0" y2="350" stroke="#7c5e4b" strokeWidth="1.5" strokeDasharray="3 3" />
+          <line x1="75" y1="150" x2="25" y2="230" stroke="#7c5e4b" strokeWidth="2" />
 
           {/* Right Wing lines */}
-          <line x1="250" y1="110" x2="325" y2="150" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="325" y1="150" x2="300" y2="190" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="300" y1="190" x2="375" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="375" y1="230" x2="350" y2="270" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="350" y1="270" x2="375" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
-          <line x1="375" y1="230" x2="400" y2="350" stroke="var(--text-main)" strokeWidth="1.5" strokeDasharray="3 3" />
-          <line x1="325" y1="150" x2="375" y2="230" stroke="var(--text-main)" strokeWidth="1.5" />
+          <line x1="250" y1="110" x2="325" y2="150" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="325" y1="150" x2="300" y2="190" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="300" y1="190" x2="375" y2="230" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="375" y1="230" x2="350" y2="270" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="350" y1="270" x2="375" y2="230" stroke="#7c5e4b" strokeWidth="2" />
+          <line x1="375" y1="230" x2="400" y2="350" stroke="#7c5e4b" strokeWidth="1.5" strokeDasharray="3 3" />
+          <line x1="325" y1="150" x2="375" y2="230" stroke="#7c5e4b" strokeWidth="2" />
 
+          {/* Draw Board Nodes */}
           {NODES.map(node => {
             const isTiger = tigers.includes(node.id);
             const isGoat = goats.includes(node.id);
@@ -605,68 +648,72 @@ export const AaduPuliAattam: React.FC = () => {
                 onClick={() => handleNodeClick(node.id)}
                 style={{ cursor: 'pointer' }}
               >
+                {/* Active legal move selection aura */}
                 {isHighlighted && (
                   <circle 
                     cx={node.x} 
                     cy={node.y} 
-                    r="16" 
+                    r="15" 
                     fill="var(--success)" 
                     opacity="0.45"
-                    className="animate-pulse"
+                    style={{ animation: 'bounceUp 1.5s infinite ease-in-out' }}
                   />
                 )}
 
+                {/* Base Node Intersection Marker */}
                 <circle 
                   cx={node.x} 
                   cy={node.y} 
-                  r="6" 
-                  fill={isHighlighted ? 'var(--success)' : 'var(--text-muted)'} 
-                  stroke="var(--bg-card)"
-                  strokeWidth="1.5"
+                  r="6.5" 
+                  fill={isHighlighted ? 'var(--success)' : '#d4a373'} 
+                  stroke="#4a2e1b"
+                  strokeWidth="2"
                 />
 
+                {/* Tiger pieces rendered as premium 3D tokens with 🐯 emoji */}
                 {isTiger && (
-                  <g>
+                  <g style={{ filter: 'drop-shadow(0 3px 6px rgba(0,0,0,0.4))' }}>
                     <circle 
                       cx={node.x} 
                       cy={node.y} 
-                      r="14" 
-                      fill="var(--danger)" 
-                      stroke={isSelected ? '#fff' : 'rgba(0,0,0,0.3)'}
-                      strokeWidth={isSelected ? 3 : 1}
+                      r="16" 
+                      fill="url(#tigerGrad)" 
+                      stroke={isSelected ? 'var(--secondary)' : '#78350f'}
+                      strokeWidth={isSelected ? 3.5 : 1.5}
+                      style={{ transition: 'all 0.2s ease', outline: isSelected ? '2px solid #fff' : 'none' }}
+                    />
+                    <text 
+                      x={node.x} 
+                      y={node.y + 4.5} 
+                      textAnchor="middle" 
+                      fontSize="14"
+                      fontWeight="bold"
+                    >
+                      🐯
+                    </text>
+                  </g>
+                )}
+
+                {/* Goat pieces rendered as premium 3D stone tokens with 🐐 emoji */}
+                {isGoat && (
+                  <g style={{ filter: 'drop-shadow(0 3px 5px rgba(0,0,0,0.35))' }}>
+                    <circle 
+                      cx={node.x} 
+                      cy={node.y} 
+                      r="13" 
+                      fill="url(#goatGrad)" 
+                      stroke={isSelected ? 'var(--primary)' : '#94a3b8'}
+                      strokeWidth={isSelected ? 3 : 1.2}
+                      style={{ transition: 'all 0.2s ease', outline: isSelected ? '2px solid #fff' : 'none' }}
                     />
                     <text 
                       x={node.x} 
                       y={node.y + 4} 
                       textAnchor="middle" 
-                      fill="#fff" 
-                      fontWeight="bold" 
-                      fontSize="11"
+                      fontSize="11.5"
+                      fontWeight="bold"
                     >
-                      புலி
-                    </text>
-                  </g>
-                )}
-
-                {isGoat && (
-                  <g>
-                    <circle 
-                      cx={node.x} 
-                      cy={node.y} 
-                      r="12" 
-                      fill="var(--primary)" 
-                      stroke={isSelected ? '#fff' : 'rgba(0,0,0,0.3)'}
-                      strokeWidth={isSelected ? 3 : 1}
-                    />
-                    <text 
-                      x={node.x} 
-                      y={node.y + 3} 
-                      textAnchor="middle" 
-                      fill="#fff" 
-                      fontWeight="bold" 
-                      fontSize="9"
-                    >
-                      ஆடு
+                      🐐
                     </text>
                   </g>
                 )}
@@ -683,16 +730,29 @@ export const AaduPuliAattam: React.FC = () => {
 
       {/* Rules Box */}
       <div className="glass" style={rulesBoxStyle}>
-        <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', marginBottom: '0.5rem' }}>
-          <Info size={16} /> Game Mechanics (Rules)
+        <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.1rem', fontWeight: 700 }}>
+          <Info size={16} /> {language === 'en' ? 'Game Rules & Mechanics' : 'விளையாட்டு விதிமுறைகள்'}
         </h4>
-        <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-          <li>There are <strong>3 Tigers (புலி)</strong> and <strong>15 Goats (ஆடு)</strong>.</li>
-          <li>Tigers start placed on the board apex and middle intersections.</li>
-          <li><strong>Goats Placement</strong>: Place goats one by one on empty intersections. Tigers move/jump immediately between placements.</li>
-          <li><strong>Movement</strong>: Once all 15 goats are on board, goats can move to adjacent empty nodes.</li>
-          <li><strong>Tiger Hunts</strong>: Tigers jump over a single goat in a straight line to an empty space behind it to "kill" it.</li>
-          <li><strong>Win Conditions</strong>: Goats win by surrounding and locking all 3 tigers. Tigers win by killing 5 goats.</li>
+        <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+          {language === 'en' ? (
+            <>
+              <li>There are <strong>3 Tigers (புலி)</strong> and <strong>15 Goats (ஆடு)</strong>.</li>
+              <li>Tigers start placed on the board apex and middle intersections.</li>
+              <li><strong>Goat Placement</strong>: Place goats one by one on empty intersections. Tigers move/jump immediately after each placement.</li>
+              <li><strong>Movement</strong>: Once all 15 goats are on the board, goats can move to adjacent empty nodes.</li>
+              <li><strong>Tiger Hunts</strong>: Tigers capture a goat by jumping over it in a straight line onto an empty space behind it.</li>
+              <li><strong>Win Conditions</strong>: Goats win by surrounding and trapping all 3 tigers. Tigers win by capturing 5 goats.</li>
+            </>
+          ) : (
+            <>
+              <li>இவ்விளையாட்டில் <strong>3 புலிகளும் (🐯)</strong>, <strong>15 ஆடுகளும் (🐐)</strong> பயன்படுத்தப்படுகின்றன.</li>
+              <li>புலிகள் முக்கோணத்தின் உச்சி மற்றும் நடுப் புள்ளிகளில் ஆட்டத் தொடக்கத்தில் இருக்கும்.</li>
+              <li><strong>ஆடு வைக்கும் நிலை</strong>: ஆடுகள் ஒவ்வொன்றாக காலியான புள்ளிகளில் வைக்கப்படும். ஒவ்வொரு ஆடு வைக்கப்பட்ட பின்னும் புலி நகரும்.</li>
+              <li><strong>நகர்த்தும் நிலை</strong>: 15 ஆடுகளும் வைக்கப்பட்ட பின்பு, ஆடுகள் தங்களுக்கு அடுத்த காலியான புள்ளிகளுக்கு நகர்த்தப்படும்.</li>
+              <li><strong>புலி வேட்டை</strong>: புலிகள் ஆடுகளைத் தாண்டி வெட்டி வீழ்த்த முயலும் (ஆட்டிற்கு பின் புள்ளி காலியாக இருக்க வேண்டும்).</li>
+              <li><strong>வெற்றி நிபந்தனை</strong>: புலிகள் நகர முடியாமல் ஆடுகள் முடக்கினால் ஆடுகளுக்கு வெற்றி. 5 ஆடுகளை வெட்டினால் புலிகளுக்கு வெற்றி.</li>
+            </>
+          )}
         </ul>
       </div>
 
@@ -700,6 +760,7 @@ export const AaduPuliAattam: React.FC = () => {
   );
 };
 
+// CSS Styles
 const selectStyle = {
   padding: '0.5rem 1rem',
   borderRadius: '8px',
@@ -724,7 +785,7 @@ const selectDifficultyStyle = {
 
 const statBoxStyle = {
   backgroundColor: 'var(--bg-card)',
-  padding: '0.8rem',
+  padding: '1rem 0.8rem',
   borderRadius: '12px',
   textAlign: 'center' as const,
   boxShadow: 'var(--shadow-sm)',
@@ -743,6 +804,15 @@ const resetBtnStyle = {
   fontSize: '0.85rem',
   backgroundColor: 'var(--bg-card)',
   color: 'var(--text-main)',
+};
+
+const gridAndControlStyle = {
+  display: 'flex',
+  gap: '2rem',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexWrap: 'wrap' as const,
+  marginBottom: '1.5rem',
 };
 
 const statusBannerStyle = (gameOver: boolean) => ({
@@ -776,7 +846,7 @@ const tutorialOverlayStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   zIndex: 1000,
-  backdropFilter: 'blur(4px)'
+  backdropFilter: 'blur(5px)'
 };
 
 const tutorialModalStyle = {

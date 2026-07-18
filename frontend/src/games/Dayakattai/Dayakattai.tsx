@@ -94,7 +94,7 @@ export const Dayakattai: React.FC = () => {
     setDiceVisual([0, 0]);
     setGameOver(false);
     setSelectedTokenIdx(null);
-    setMessage('Game restarted. Player 1\'s roll phase.');
+    setMessage(language === 'en' ? "Game restarted. Player 1's roll phase." : 'விளையாட்டு மீளமைக்கப்பட்டது. முதல் விளையாட்டாளர் உருட்டவும்.');
   };
 
   const handleRoll = async () => {
@@ -138,14 +138,14 @@ export const Dayakattai: React.FC = () => {
     const extraRoll = rollVal === 1 || rollVal === 5 || rollVal === 12;
 
     if (extraRoll) {
-      setMessage(`Rolled a ${rollVal === 1 ? 'Dhaayam (1)' : rollVal}! You earned an EXTRA roll.`);
+      setMessage(language === 'en' ? `Rolled a ${rollVal === 1 ? 'Dhaayam (1)' : rollVal}! You earned an EXTRA roll.` : `உருட்டப்பட்டது: ${rollVal === 1 ? 'தாயம் (1)' : rollVal}! மீண்டும் உருட்ட உங்களுக்கு வாய்ப்பு உள்ளது.`);
     } else {
-      setMessage(`Rolled a ${rollVal}. Now select a token and a move from your pool.`);
+      setMessage(language === 'en' ? `Rolled a ${rollVal}. Now select a token and a move from your pool.` : `விழுந்த எண்: ${rollVal}. காயைத் தேர்ந்தெடுத்து நகர்த்தவும்.`);
       
       const hasMoves = checkValidMoves(newPool);
       if (!hasMoves) {
         await new Promise(resolve => setTimeout(resolve, 1500));
-        setMessage('No legal moves available. Turn passed.');
+        setMessage(language === 'en' ? 'No legal moves available. Turn passed.' : 'நகர்த்த வழிகள் ஏதுமில்லை. அடுத்த விளையாட்டாளர் முறை.');
         setRollPool([]);
         setIsP1Turn(!isP1Turn);
       }
@@ -183,12 +183,12 @@ export const Dayakattai: React.FC = () => {
     if (!isP1Turn && gameMode === 'ai') return;
 
     if (rollPool.length === 0) {
-      setMessage('You must roll the sticks first!');
+      setMessage(language === 'en' ? 'You must roll the sticks first!' : 'பகடையை முதலில் உருட்ட வேண்டும்!');
       return;
     }
 
     setSelectedTokenIdx(tokenIdx);
-    setMessage(`Selected Token ${tokenIdx + 1}. Select which roll to use.`);
+    setMessage(language === 'en' ? `Selected Token ${tokenIdx + 1}. Select which roll to use.` : `காய் ${tokenIdx + 1} தேர்வுசெய்யப்பட்டது. நகர்த்த வேண்டிய எண்ணைக் கிளிக் செய்யவும்.`);
   };
 
   const handleMoveToken = async (rollVal: number) => {
@@ -204,7 +204,7 @@ export const Dayakattai: React.FC = () => {
       if (rollVal === 1) {
         targetPos = 0; 
       } else {
-        setMessage('Tokens in starting pool can only enter on a roll of 1 (Dhaayam).');
+        setMessage(language === 'en' ? 'Tokens in starting pool can only enter on a roll of 1 (Dhaayam).' : 'தாயம் (1) விழுந்தால் மட்டுமே காய்களைத் தொடங்க முடியும்.');
         return;
       }
     } else {
@@ -212,13 +212,13 @@ export const Dayakattai: React.FC = () => {
     }
 
     if (targetPos >= path.length) {
-      setMessage('Move exceeds the Home limit.');
+      setMessage(language === 'en' ? 'Move exceeds the Home limit.' : 'நகர்வு எல்லையைத் தாண்டுகிறது.');
       return;
     }
 
     const hasCut = isP1Turn ? p1HasCut : p2HasCut;
     if (targetPos >= 16 && currPos < 16 && !hasCut) {
-      setMessage('Cannot enter inner loop or Home without cutting at least one opponent token first!');
+      setMessage(language === 'en' ? 'Cannot enter inner loop or Home without cutting at least one opponent token first!' : 'குறைந்தது ஒரு எதிரிக் காயையாவது வெட்டினால் மட்டுமே நடுமனைக்குள் நுழைய முடியும்!');
       return;
     }
 
@@ -266,12 +266,12 @@ export const Dayakattai: React.FC = () => {
         } else {
           setP2Tokens(newOppTokens);
           setP1HasCut(true); 
-          setMessage(`BAM! Player 1 cut Player 2's Token! Enter-Inner path unlocked.`);
+          setMessage(language === 'en' ? `BAM! Player 1 cut Player 2's Token! Enter-Inner path unlocked.` : 'பலே! இரண்டாம் விளையாட்டாளரின் காய் வெட்டப்பட்டது! உள்மனைப் பாதை திறந்தது.');
         }
 
         if (opponent === 2) {
           setP2HasCut(true); 
-          setMessage(`BAM! ${gameMode === 'ai' ? 'AI' : 'Player 2'} cut Player 1's Token!`);
+          setMessage(language === 'en' ? `BAM! ${gameMode === 'ai' ? 'AI' : 'Player 2'} cut Player 1's Token!` : `பலே! ${gameMode === 'ai' ? 'கணினி' : 'இரண்டாம் விளையாட்டாளர்'} உங்களது காயை வெட்டியது!`);
         }
 
         playDefeat(); 
@@ -285,12 +285,12 @@ export const Dayakattai: React.FC = () => {
       const username = user?.username || 'Guest';
 
       if (isP1Turn) {
-        setMessage('CONGRATULATIONS! You successfully navigated all tokens home and won Dayakattai!');
+        setMessage(language === 'en' ? 'CONGRATULATIONS! You successfully navigated all tokens home and won Dayakattai!' : 'வாழ்த்துகள்! அனைத்துக் காய்களையும் பழமாக்கி ஆட்டத்தை வென்றீர்கள்!');
         confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
         playVictory();
         recordGameResult('dayakattai', [username, gameMode === 'ai' ? 'AI' : 'Guest'], username, { [username]: 4 });
       } else {
-        setMessage(`Game Over! ${gameMode === 'ai' ? 'AI' : 'Player 2'} successfully reached home first!`);
+        setMessage(language === 'en' ? `Game Over! ${gameMode === 'ai' ? 'AI' : 'Player 2'} successfully reached home first!` : `ஆட்டம் முடிந்தது! ${gameMode === 'ai' ? 'கணினி' : 'இரண்டாம் விளையாட்டாளர்'} முதலில் நடுமனையை அடைந்து வென்றது!`);
         playDefeat();
         recordGameResult('dayakattai', [username, gameMode === 'ai' ? 'AI' : 'Guest'], gameMode === 'ai' ? 'AI' : 'Guest', { [username]: newTokens.filter(t => t === 23).length });
       }
@@ -300,17 +300,17 @@ export const Dayakattai: React.FC = () => {
     if (updatedPool.length === 0) {
       setIsP1Turn(!isP1Turn);
       setMessage(isP1Turn 
-        ? `${gameMode === 'ai' ? 'AI' : 'Player 2'} Roll phase.` 
-        : 'Player 1 Roll phase.'
+        ? (language === 'en' ? `${gameMode === 'ai' ? 'AI' : 'Player 2'} Roll phase.` : `${gameMode === 'ai' ? 'கணினி' : 'இரண்டாம் விளையாட்டாளர்'} உருட்டவும்.`)
+        : (language === 'en' ? 'Player 1 Roll phase.' : 'முதல் விளையாட்டாளர் உருட்டவும்.')
       );
     } else {
       const hasMoves = checkValidMoves(updatedPool);
       if (!hasMoves) {
-        setMessage('No remaining legal moves with pool. Turn passed.');
+        setMessage(language === 'en' ? 'No remaining legal moves with pool. Turn passed.' : 'நகர்த்த வழிகள் ஏதுமில்லை. முறை மாறுகிறது.');
         setRollPool([]);
         setIsP1Turn(!isP1Turn);
       } else {
-        setMessage('Select another token to use the remaining rolls.');
+        setMessage(language === 'en' ? 'Select another token to use the remaining rolls.' : 'மீதமுள்ள எண்களுக்கு மற்றொரு காயைத் தேர்வுசெய்து நகர்த்தவும்.');
       }
     }
   };
@@ -353,13 +353,12 @@ export const Dayakattai: React.FC = () => {
         if (targetPos !== -1 && targetPos < path.length) {
           if (targetPos >= 16 && pos < 16 && !hasCut) continue;
 
-          // AI Difficulty grading adjustments
           let score = targetPos;
           
           if (difficulty === 'easy') {
-            score = Math.random() * 10; // Easy chooses random moves
+            score = Math.random() * 10;
           } else {
-            if (targetPos === path.length - 1) score += 100; // go home
+            if (targetPos === path.length - 1) score += 100;
 
             const cell = path[targetPos];
             const isSafe = isSafeCell(cell.row, cell.col);
@@ -369,11 +368,11 @@ export const Dayakattai: React.FC = () => {
                 const oppCell = oppPath[oppPos];
                 return oppCell.row === cell.row && oppCell.col === cell.col;
               });
-              if (oppCut) score += 80; // prioritize cuts
+              if (oppCut) score += 80;
             }
 
             if (difficulty === 'hard') {
-              if (isSafe) score += 15; // Hard AI prioritizes safe zones
+              if (isSafe) score += 15;
             }
           }
 
@@ -422,7 +421,7 @@ export const Dayakattai: React.FC = () => {
           newOppTokens[cutIndex] = -1;
           setP1Tokens(newOppTokens);
           setP2HasCut(true);
-          setMessage(`BAM! AI cut Player 1's Token at Row ${targetCell.row + 1}, Col ${targetCell.col + 1}!`);
+          setMessage(language === 'en' ? `BAM! AI cut Player 1's Token!` : `பலே! கணினி உங்களது காயை வெட்டியது!`);
           playDefeat();
           await new Promise(resolve => setTimeout(resolve, 600));
         }
@@ -431,7 +430,7 @@ export const Dayakattai: React.FC = () => {
       if (newTokens.every(pos => pos === path.length - 1)) {
         setGameOver(true);
         const username = user?.username || 'Guest';
-        setMessage('Game Over! AI won Dayakattai.');
+        setMessage(language === 'en' ? 'Game Over! AI won Dayakattai.' : 'ஆட்டம் முடிந்தது! கணினி வென்றது.');
         playDefeat();
         recordGameResult('dayakattai', [username, 'AI'], 'AI', { [username]: p1Tokens.filter(t => t === 23).length });
         return;
@@ -439,11 +438,11 @@ export const Dayakattai: React.FC = () => {
 
       if (updatedPool.length === 0) {
         setIsP1Turn(true);
-        setMessage('Player 1 Roll phase.');
+        setMessage(language === 'en' ? 'Player 1 Roll phase.' : 'முதல் விளையாட்டாளர் முறை உருட்டவும்.');
       } else {
         const hasMoves = checkValidMoves(updatedPool);
         if (!hasMoves) {
-          setMessage('AI has no remaining legal moves. Turn passed.');
+          setMessage(language === 'en' ? 'AI has no remaining legal moves. Turn passed.' : 'நகர்த்த வழிகள் ஏதுமில்லை. கணினி முறை மாறியது.');
           setRollPool([]);
           setIsP1Turn(true);
         }
@@ -451,8 +450,34 @@ export const Dayakattai: React.FC = () => {
     } else {
       setRollPool([]);
       setIsP1Turn(true);
-      setMessage('AI has no valid moves. Player 1 Roll phase.');
+      setMessage(language === 'en' ? 'AI has no valid moves. Player 1 Roll phase.' : 'கணினிக்கு நகர்வுகள் ஏதுமில்லை. முதல் விளையாட்டாளர் முறை.');
     }
+  };
+
+  const renderStickMarkings = (val: number) => {
+    if (val === 0) {
+      return (
+        <div style={{ fontSize: '1rem', fontWeight: 900, color: 'rgba(255, 255, 255, 0.75)', filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.5))' }}>
+          ✕
+        </div>
+      );
+    }
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center' }}>
+        {Array.from({ length: val }).map((_, i) => (
+          <div 
+            key={i} 
+            style={{ 
+              width: '6px', 
+              height: '6px', 
+              borderRadius: '50%', 
+              backgroundColor: '#ffffff', 
+              boxShadow: 'inset 0 1.5px 1px rgba(0,0,0,0.8), 0 0.5px 1px rgba(255,255,255,0.3)' 
+            }} 
+          />
+        ))}
+      </div>
+    );
   };
 
   const renderCellTokens = (row: number, col: number) => {
@@ -464,7 +489,7 @@ export const Dayakattai: React.FC = () => {
       .filter(t => t.pos !== -1 && P2_PATH[t.pos].row === row && P2_PATH[t.pos].col === col);
 
     return (
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2px', justifyContent: 'center', width: '100%', height: '100%', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px', justifyContent: 'center', width: '100%', height: '100%', alignItems: 'center' }}>
         {p1OnCell.map(t => (
           <div 
             key={`p1-t-${t.idx}`}
@@ -533,10 +558,14 @@ export const Dayakattai: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h2 style={{ fontSize: '2rem', color: 'var(--primary)' }}>தாயக்கட்டை / Dayakattai</h2>
-          <p style={{ color: 'var(--text-muted)' }}>The traditional Tamil race board game played with long brass dice.</p>
+          <p style={{ color: 'var(--text-muted)' }}>
+            {language === 'en' 
+              ? 'The traditional Tamil race board game played with long brass dice.' 
+              : 'தாயக்கட்டை: நீளப் பகடைகள் கொண்டு ஆடப்படும் பழங்கால தமிழ் ஓட்டப் பந்தய விளையாட்டு.'}
+          </p>
         </div>
         
-        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <button 
             onClick={() => { setShowTutorial(true); setTutorialStep(0); }}
             style={{ ...resetBtnStyle, color: 'var(--primary)' }}
@@ -550,9 +579,9 @@ export const Dayakattai: React.FC = () => {
               onChange={(e) => setDifficulty(e.target.value as any)}
               style={selectDifficultyStyle}
             >
-              <option value="easy">Easy AI</option>
-              <option value="medium">Medium AI</option>
-              <option value="hard">Hard AI</option>
+              <option value="easy">{language === 'en' ? 'Easy AI' : 'எளிதான கணினி'}</option>
+              <option value="medium">{language === 'en' ? 'Medium AI' : 'நடுத்தர கணினி'}</option>
+              <option value="hard">{language === 'en' ? 'Smart AI' : 'சாமர்த்திய கணினி'}</option>
             </select>
           )}
 
@@ -561,14 +590,14 @@ export const Dayakattai: React.FC = () => {
             onClick={() => { setGameMode('ai'); initGame(); }}
             style={toggleBtnStyle(gameMode === 'ai')}
           >
-            <Cpu size={16} /> vs AI
+            <Cpu size={16} /> {t('vs_ai')}
           </button>
           <button 
             className={`btn-toggle ${gameMode === 'local' ? 'active' : ''}`}
             onClick={() => { setGameMode('local'); initGame(); }}
             style={toggleBtnStyle(gameMode === 'local')}
           >
-            <User size={16} /> Pass & Play
+            <User size={16} /> {t('pass_play')}
           </button>
           <button onClick={initGame} style={resetBtnStyle}>
             <RotateCcw size={16} /> {t('reset')}
@@ -578,8 +607,21 @@ export const Dayakattai: React.FC = () => {
 
       <div style={gridAndControlStyle}>
         
-        {/* 5x5 Board Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 75px)', gridTemplateRows: 'repeat(5, 75px)', gap: '4px', backgroundColor: 'var(--border-color)', padding: '6px', borderRadius: '12px', boxShadow: 'var(--shadow-md)' }}>
+        {/* 5x5 Board Grid with realistic wood frame styling */}
+        <div 
+          className="wood-board" 
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(5, 75px)', 
+            gridTemplateRows: 'repeat(5, 75px)', 
+            gap: '6px', 
+            backgroundColor: '#5a2e0f', 
+            padding: '12px', 
+            borderRadius: '16px', 
+            boxShadow: 'var(--shadow-lg), 0 10px 25px rgba(139, 74, 29, 0.25)',
+            border: '6px solid #4a2307'
+          }}
+        >
           {boardCells.map((rowArr, rIdx) => 
             rowArr.map((cellNum, cIdx) => {
               const safe = isSafeCell(rIdx, cIdx);
@@ -590,18 +632,21 @@ export const Dayakattai: React.FC = () => {
                   key={cellNum}
                   style={cellStyle(rIdx, cIdx, safe, isCenter)}
                 >
+                  {/* Decorative Traditional Safe Zone Cross SVG lines */}
                   {safe && (
-                    <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(178,138,42,0.15)', fontSize: '2.5rem', fontWeight: 300, pointerEvents: 'none' }}>
-                      ✕
-                    </div>
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', opacity: 0.18 }} viewBox="0 0 100 100">
+                      <line x1="15" y1="15" x2="85" y2="85" stroke={isCenter ? "var(--success)" : "#78350f"} strokeWidth="5.5" strokeLinecap="round" />
+                      <line x1="85" y1="15" x2="15" y2="85" stroke={isCenter ? "var(--success)" : "#78350f"} strokeWidth="5.5" strokeLinecap="round" />
+                      <circle cx="50" cy="50" r="9" fill={isCenter ? "var(--success)" : "#78350f"} />
+                    </svg>
                   )}
                   {safe && !isCenter && (
-                    <span style={{ position: 'absolute', top: '2px', right: '3px', fontSize: '0.6rem', color: '#b28a2a', fontWeight: 'bold' }}>
+                    <span style={{ position: 'absolute', top: '3px', right: '4px', fontSize: '0.55rem', color: '#8b5a2b', fontWeight: 'bold' }}>
                       SAFE
                     </span>
                   )}
                   {isCenter && (
-                    <span style={{ position: 'absolute', top: '2px', right: '3px', fontSize: '0.6rem', color: 'var(--success)', fontWeight: 'bold' }}>
+                    <span style={{ position: 'absolute', top: '3px', right: '4px', fontSize: '0.55rem', color: 'var(--success)', fontWeight: 'bold' }}>
                       HOME
                     </span>
                   )}
@@ -616,27 +661,30 @@ export const Dayakattai: React.FC = () => {
         {/* Rolling Controls & Pools */}
         <div style={controlPanelStyle}>
           <div style={{ textAlign: 'center', width: '100%', marginBottom: '0.5rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Active Turn</div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 'bold', color: isP1Turn ? 'var(--primary)' : 'var(--secondary)' }}>
-              {isP1Turn ? 'Player 1 (Red)' : gameMode === 'ai' ? 'AI (Gold)' : 'Player 2 (Gold)'}
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.5px' }}>
+              {language === 'en' ? 'ACTIVE TURN' : 'தற்போதைய முறை'}
+            </div>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: isP1Turn ? 'var(--primary)' : 'var(--secondary)', marginTop: '0.2rem' }}>
+              {isP1Turn ? (language === 'en' ? 'Player 1 (Red)' : 'விளையாட்டாளர் 1') : gameMode === 'ai' ? (language === 'en' ? 'AI (Gold)' : 'கணினி') : (language === 'en' ? 'Player 2 (Gold)' : 'விளையாட்டாளர் 2')}
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.75rem', marginBottom: '0.8rem', width: '100%', justifyContent: 'space-around' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', fontSize: '0.75rem', marginBottom: '0.8rem', width: '100%', justifyContent: 'space-around', fontWeight: 700 }}>
             <span style={{ color: p1HasCut ? 'var(--success)' : 'var(--text-muted)' }}>
-              P1 Cut: {p1HasCut ? '✔ Unlocked' : '❌ Locked'}
+              P1 {p1HasCut ? '✔ Cut' : '❌ Lock'}
             </span>
             <span style={{ color: p2HasCut ? 'var(--success)' : 'var(--text-muted)' }}>
-              P2 Cut: {p2HasCut ? '✔ Unlocked' : '❌ Locked'}
+              P2 {p2HasCut ? '✔ Cut' : '❌ Lock'}
             </span>
           </div>
 
-          <div style={{ display: 'flex', gap: '1rem', margin: '0.5rem 0' }}>
+          {/* Brass long sticks */}
+          <div style={{ display: 'flex', gap: '1.2rem', margin: '0.8rem 0' }}>
             <div style={stickStyle(isRolling)}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 'bold' }}>{diceVisual[0] === 0 ? 'X' : diceVisual[0]}</span>
+              {renderStickMarkings(diceVisual[0])}
             </div>
             <div style={stickStyle(isRolling)}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 'bold' }}>{diceVisual[1] === 0 ? 'X' : diceVisual[1]}</span>
+              {renderStickMarkings(diceVisual[1])}
             </div>
           </div>
 
@@ -645,12 +693,14 @@ export const Dayakattai: React.FC = () => {
             disabled={isRolling || gameOver || rollPool.length > 0 && !rollPool.includes(1) && !rollPool.includes(5) && !rollPool.includes(12) || (!isP1Turn && gameMode === 'ai')}
             style={rollButtonStyle(isRolling || gameOver || (!isP1Turn && gameMode === 'ai'))}
           >
-            {isRolling ? 'Rolling...' : 'Roll sticks'}
+            {isRolling 
+              ? (language === 'en' ? 'Rolling...' : 'உருளுகிறது...') 
+              : (language === 'en' ? 'Roll Sticks' : 'உருட்டவும்')}
           </button>
 
           {rollPool.length > 0 && (
             <div style={{ marginTop: '0.8rem', width: '100%' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.3rem', textAlign: 'center' }}>Choose Roll to Move:</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.3rem', textAlign: 'center', fontWeight: 600 }}>Choose Roll:</div>
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                 {rollPool.map((val, idx) => (
                   <button
@@ -664,19 +714,22 @@ export const Dayakattai: React.FC = () => {
                 ))}
               </div>
               {selectedTokenIdx === null && (
-                <div style={{ fontSize: '0.7rem', color: 'var(--primary)', textAlign: 'center', marginTop: '0.4rem' }}>
-                  (Select one of your tokens on the board or side pools first)
+                <div style={{ fontSize: '0.7rem', color: 'var(--primary)', textAlign: 'center', marginTop: '0.4rem', fontWeight: 600 }}>
+                  {language === 'en' ? '(Select a token on board or starting pool first)' : '(நகர்த்த வேண்டிய காயை முதலில் தேர்ந்தெடுங்கள்)'}
                 </div>
               )}
             </div>
           )}
 
+          {/* Staging Pools */}
           <div style={{ borderTop: '1px solid var(--border-color)', marginTop: '0.8rem', paddingTop: '0.8rem', width: '100%' }}>
-            <div style={{ fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.3rem' }}>Starting Pool</div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 700, marginBottom: '0.35rem', color: 'var(--text-muted)', letterSpacing: '0.5px' }}>
+              {language === 'en' ? 'STARTING POOLS' : 'தொடக்கக் குவியல்'}
+            </div>
             
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-              <span style={{ fontSize: '0.75rem' }}>🔴 Player 1:</span>
-              <div style={{ display: 'flex', gap: '3px' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>🔴 P1:</span>
+              <div style={{ display: 'flex', gap: '4px' }}>
                 {p1Tokens.map((pos, idx) => (
                   pos === -1 ? (
                     <div 
@@ -693,8 +746,8 @@ export const Dayakattai: React.FC = () => {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '0.75rem' }}>🟡 P2 / AI:</span>
-              <div style={{ display: 'flex', gap: '3px' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 600 }}>🟡 P2/AI:</span>
+              <div style={{ display: 'flex', gap: '4px' }}>
                 {p2Tokens.map((pos, idx) => (
                   pos === -1 ? (
                     <div 
@@ -721,21 +774,172 @@ export const Dayakattai: React.FC = () => {
 
       {/* Rules Box */}
       <div className="glass" style={rulesBoxStyle}>
-        <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-          <Info size={16} /> Dayakattai 5x5 Thayam Rules
+        <h4 style={{ color: 'var(--primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '1.1rem', fontWeight: 700 }}>
+          <Info size={16} /> {language === 'en' ? 'Dayakattai 5x5 Thayam Rules' : 'தாயக்கட்டை ஆட்ட விதிமுறைகள்'}
         </h4>
-        <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.5' }}>
-          <li>You have <strong>4 tokens</strong> starting off-board.</li>
-          <li>To enter a token onto the board (at starting safe zone), you must roll a <strong>1 (Dhaayam)</strong>.</li>
-          <li>Rolls of <strong>1, 5, or 12</strong> grant you an <strong>extra roll</strong>! Rolls accumulate in a pool.</li>
-          <li>Opponents cannot cut you on <strong>Safe Zones (SAFE)</strong>. Safe zones are marked with <strong>✕</strong>.</li>
-          <li><strong>CRITICAL</strong>: You <strong>must cut</strong> at least one opponent token before you can enter the inner loop to reach the center <strong>HOME</strong>!</li>
+        <ul style={{ paddingLeft: '1.2rem', fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>
+          {language === 'en' ? (
+            <>
+              <li>Each player has <strong>4 tokens</strong> starting off-board.</li>
+              <li>To enter a token onto the board (at starting safe zone), you must roll a <strong>1 (Dhaayam)</strong>.</li>
+              <li>Rolls of <strong>1, 5, or 12</strong> grant you an <strong>extra roll</strong>! Rolls accumulate in a pool.</li>
+              <li>Opponents cannot cut you on <strong>Safe Zones (SAFE)</strong>. Safe zones are marked with <strong>✕</strong>.</li>
+              <li><strong>CRITICAL</strong>: You <strong>must cut</strong> at least one opponent token before you can enter the inner loop to reach the center <strong>HOME</strong>!</li>
+            </>
+          ) : (
+            <>
+              <li>விளையாடுபவருக்கு தலா <strong>4 காய்கள்</strong> உண்டு. அவை முதலில் களத்திற்கு வெளியே இருக்கும்.</li>
+              <li>களத்தில் காயைத் தொடங்க <strong>1 (தாயம்)</strong> விழ வேண்டும். தாயம் விழுந்த காய் தொடக்க வாயிலில் வைக்கப்படும்.</li>
+              <li>பகடையில் <strong>1, 5, அல்லது 12</strong> விழுந்தால் மீண்டும் பகடையை உருட்ட வாய்ப்பு கிடைக்கும்!</li>
+              <li><strong>பாதுகாப்பு கட்டம் (SAFE)</strong> ✕ குறியிடப்பட்டுள்ளது. அங்குள்ள காய்களை வெட்ட முடியாது.</li>
+              <li><strong>முக்கிய விதி</strong>: எதிரியின் காயை வெட்டினால் மட்டுமே காய்கள் உள்வட்டத்திற்குள் நுழைந்து <strong>நடுமனையை (பழம்)</strong> அடைய முடியும்!</li>
+            </>
+          )}
         </ul>
       </div>
 
     </div>
   );
 };
+
+// Styles and helpers
+const cellStyle = (row: number, col: number, safe: boolean, center: boolean) => {
+  let bg = '#fbf8f3';
+  let border = '2.5px solid #5c4033';
+  
+  if (center) bg = 'rgba(34, 197, 94, 0.18)'; 
+  else if (safe) bg = 'rgba(212, 163, 115, 0.2)'; 
+
+  return {
+    width: '75px',
+    height: '75px',
+    backgroundColor: bg,
+    border,
+    borderRadius: '6px',
+    position: 'relative' as const,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+};
+
+const tokenStyle = (player: 1 | 2, selected: boolean) => {
+  const bg = player === 1 
+    ? 'radial-gradient(circle at 35% 35%, #ef4444 0%, #991b1b 65%, #450a0a 100%)' 
+    : 'radial-gradient(circle at 35% 35%, #f59e0b 0%, #b45309 65%, #78350f 100%)';
+  const border = selected ? '2.5px solid #ffffff' : '1.5px solid rgba(0,0,0,0.45)';
+  return {
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    background: bg,
+    border,
+    boxShadow: selected ? '0 0 12px rgba(251,191,36,0.8), 0 3px 5px rgba(0,0,0,0.4)' : '0 2.5px 4px rgba(0,0,0,0.4)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#fff',
+    fontSize: '0.75rem',
+    fontWeight: 'bold' as const,
+    cursor: 'pointer',
+    transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+    outline: selected ? '1.5px solid var(--secondary)' : 'none',
+    transform: selected ? 'scale(1.15) translateY(-2px)' : 'scale(1)',
+  };
+};
+
+const stickStyle = (rolling: boolean) => ({
+  width: '26px',
+  height: '100px',
+  background: 'linear-gradient(135deg, #f59e0b 0%, #b28a2a 50%, #78350f 100%)',
+  border: '2.5px solid #d97706',
+  borderRadius: '4px',
+  display: 'flex',
+  flexDirection: 'column' as const,
+  alignItems: 'center',
+  justifyContent: 'center',
+  boxShadow: '0 6px 12px rgba(0,0,0,0.3), inset 0 0 10px rgba(255,255,255,0.2)',
+  color: '#fff',
+  textShadow: '0 1px 2px rgba(0,0,0,0.8)',
+  transition: 'all 0.1s ease',
+  ...(rolling && { animation: 'rollDice 0.4s infinite linear' }),
+});
+
+const controlPanelStyle = {
+  display: 'flex',
+  flexDirection: 'column' as const,
+  alignItems: 'center',
+  backgroundColor: 'var(--bg-card)',
+  padding: '1.2rem',
+  borderRadius: '12px',
+  boxShadow: 'var(--shadow-md)',
+  width: '260px',
+  border: '1px solid var(--border-color)',
+};
+
+const rollButtonStyle = (disabled: boolean) => ({
+  width: '100%',
+  padding: '0.8rem',
+  borderRadius: '8px',
+  border: 'none',
+  backgroundColor: disabled ? 'var(--border-color)' : 'var(--primary)',
+  color: '#fff',
+  fontWeight: 'bold',
+  cursor: disabled ? 'default' : 'pointer',
+  transition: 'all 0.2s ease',
+  fontSize: '0.9rem',
+});
+
+const poolValueButtonStyle = {
+  padding: '0.4rem 0.8rem',
+  borderRadius: '6px',
+  border: '2px solid var(--primary)',
+  backgroundColor: 'var(--bg-card)',
+  color: 'var(--primary)',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+  fontSize: '0.8rem',
+};
+
+const rulesBoxStyle = {
+  padding: '1.2rem',
+  borderRadius: '12px',
+  marginTop: '1.5rem',
+};
+
+// Tutorial styles
+const tutorialOverlayStyle = {
+  position: 'fixed' as const,
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  backgroundColor: 'rgba(0,0,0,0.7)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 1000,
+  backdropFilter: 'blur(5px)'
+};
+
+const tutorialModalStyle = {
+  padding: '2rem',
+  borderRadius: '16px',
+  width: '420px',
+  maxWidth: '90%',
+  boxShadow: 'var(--shadow-lg)'
+};
+
+const tutBtnStyle = (disabled: boolean) => ({
+  padding: '0.5rem 1.2rem',
+  borderRadius: '8px',
+  border: '1px solid var(--border-color)',
+  cursor: disabled ? 'default' : 'pointer',
+  backgroundColor: disabled ? 'transparent' : 'var(--bg-card)',
+  color: disabled ? 'var(--text-muted)' : 'var(--text-main)',
+  fontWeight: 'bold',
+  fontSize: '0.85rem'
+});
 
 const toggleBtnStyle = (active: boolean) => ({
   display: 'flex',
@@ -786,95 +990,6 @@ const gridAndControlStyle = {
   marginBottom: '1.5rem',
 };
 
-const cellStyle = (row: number, col: number, safe: boolean, center: boolean) => {
-  let bg = 'var(--bg-card)';
-  let border = '1px solid var(--border-color)';
-  
-  if (center) bg = 'rgba(34, 197, 94, 0.15)'; 
-  else if (safe) bg = 'rgba(229, 192, 96, 0.15)'; 
-
-  return {
-    width: '75px',
-    height: '75px',
-    backgroundColor: bg,
-    border,
-    borderRadius: '6px',
-    position: 'relative' as const,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-};
-
-const tokenStyle = (player: 1 | 2, selected: boolean) => ({
-  width: '26px',
-  height: '26px',
-  borderRadius: '50%',
-  backgroundColor: player === 1 ? 'var(--primary)' : 'var(--secondary)',
-  color: '#fff',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: '0.85rem',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  border: selected ? '2.5px solid #fff' : '1px solid rgba(0,0,0,0.3)',
-  boxShadow: selected ? '0 0 10px rgba(255,255,255,0.8)' : '0 2px 4px rgba(0,0,0,0.2)',
-  transform: selected ? 'scale(1.2)' : 'scale(1)',
-  transition: 'all 0.15s ease',
-});
-
-const stickStyle = (rolling: boolean) => ({
-  width: '80px',
-  height: '24px',
-  backgroundColor: '#f5ebe0',
-  backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #dcd0c0 100%)',
-  color: '#4a2e0f',
-  border: '2px solid #b28a2a',
-  borderRadius: '4px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-  animation: rolling ? 'bounceUp 0.15s ease infinite alternate' : 'none',
-});
-
-const controlPanelStyle = {
-  display: 'flex',
-  flexDirection: 'column' as const,
-  alignItems: 'center',
-  backgroundColor: 'var(--bg-card)',
-  padding: '1.2rem',
-  borderRadius: '12px',
-  boxShadow: 'var(--shadow-md)',
-  width: '260px',
-  border: '1px solid var(--border-color)',
-};
-
-const rollButtonStyle = (disabled: boolean) => ({
-  width: '100%',
-  padding: '0.6rem',
-  borderRadius: '8px',
-  border: 'none',
-  backgroundColor: disabled ? 'var(--border-color)' : 'var(--primary)',
-  color: '#fff',
-  fontWeight: 'bold',
-  cursor: disabled ? 'default' : 'pointer',
-  transition: 'all 0.2s ease',
-  fontSize: '0.85rem',
-});
-
-const poolValueButtonStyle = {
-  padding: '0.4rem 0.8rem',
-  borderRadius: '6px',
-  border: '1px solid var(--primary)',
-  backgroundColor: 'var(--bg-app)',
-  color: 'var(--primary)',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-  fontSize: '0.8rem',
-};
-
 const statusBannerStyle = (gameOver: boolean) => ({
   backgroundColor: gameOver ? 'var(--success)' : 'var(--bg-card)',
   color: gameOver ? '#fff' : 'var(--text-main)',
@@ -888,42 +1003,3 @@ const statusBannerStyle = (gameOver: boolean) => ({
   borderLeft: `5px solid ${gameOver ? '#fff' : 'var(--primary)'}`,
 });
 
-const rulesBoxStyle = {
-  padding: '1.2rem',
-  borderRadius: '12px',
-  marginTop: '1.5rem',
-};
-
-// Tutorial styles
-const tutorialOverlayStyle = {
-  position: 'fixed' as const,
-  top: 0,
-  left: 0,
-  width: '100vw',
-  height: '100vh',
-  backgroundColor: 'rgba(0,0,0,0.7)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  zIndex: 1000,
-  backdropFilter: 'blur(4px)'
-};
-
-const tutorialModalStyle = {
-  padding: '2rem',
-  borderRadius: '16px',
-  width: '420px',
-  maxWidth: '90%',
-  boxShadow: 'var(--shadow-lg)'
-};
-
-const tutBtnStyle = (disabled: boolean) => ({
-  padding: '0.5rem 1.2rem',
-  borderRadius: '8px',
-  border: '1px solid var(--border-color)',
-  cursor: disabled ? 'default' : 'pointer',
-  backgroundColor: disabled ? 'transparent' : 'var(--bg-card)',
-  color: disabled ? 'var(--text-muted)' : 'var(--text-main)',
-  fontWeight: 'bold',
-  fontSize: '0.85rem'
-});
